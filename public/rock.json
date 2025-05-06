@@ -1,0 +1,441 @@
+{
+  "name": "Rock",
+  "collections": [
+    {
+      "name": "Станции",
+      "streams": [
+        {
+          "name": "Чипльдук",
+          "src": "http://radio.4duk.ru/4duk128.mp3",
+          "desc": "Радио Чипльдук"
+        },
+        {
+          "name": "Неслучайное радио",
+          "src": "http://aska.ru-hoster.com:8006/stream",
+          "desc": ""
+        },
+        {
+          "name": "Два Берега",
+          "src": "https://radio-connect.dline-media.com/ber_FM.mp3",
+          "desc": ""
+        },
+        {
+          "name": "Радио Rock FM",
+          "src": "https://nashe1.hostingradio.ru/rock-128.mp3",
+          "desc": ""
+        },
+        {
+          "name": "Bar Legend Radio",
+          "src": "https://stream02.pcradio.ru/bar_legend-med",
+          "desc": ""
+        },
+        {
+          "name": "Radio Prog",
+          "src": "http://jfm1.hostingradio.ru:14536/prog.mp3",
+          "desc": ""
+        },
+        {
+          "name": "Classic Rock Florida",
+          "src": "http://vip2.fastcast4u.com/proxy/classicrockdoug?mp=/1",
+          "desc": ""
+        }
+      ]
+    },
+    {
+      "name": "181 FM",
+      "streams": [
+        {
+          "name": "The Buzz (Alt. Rock)",
+          "src": "http://listen.livestreamingservice.com:8126",
+          "desc": ""
+        },
+        {
+          "name": "90's Alternative",
+          "src": "http://listen.livestreamingservice.com:8052",
+          "desc": ""
+        },
+        {
+          "name": "Classic Buzz (Alt)",
+          "src": "http://listen.livestreamingservice.com:8038",
+          "desc": ""
+        },
+        {
+          "name": "The Eagle (Classic)",
+          "src": "http://listen.livestreamingservice.com:8030",
+          "desc": ""
+        },
+        {
+          "name": "Rock 181",
+          "src": "http://listen.livestreamingservice.com:8008",
+          "desc": ""
+        },
+        {
+          "name": "Rock 40 (Rock & Roll)",
+          "src": "http://listen.livestreamingservice.com:8028",
+          "desc": ""
+        },
+        {
+          "name": "80's Hairband",
+          "src": "http://listen.livestreamingservice.com:8014",
+          "desc": ""
+        },
+        {
+          "name": "Yacht Rock",
+          "src": "http://listen.livestreamingservice.com/181-yachtrock_128k.mp3",
+          "desc": ""
+        },
+        {
+          "name": "Chloe @181.FM",
+          "src": "http://listen.livestreamingservice.com:8100",
+          "desc": ""
+        },
+        {
+          "name": "The Point",
+          "src": "http://listen.livestreamingservice.com:8010",
+          "desc": ""
+        },
+        {
+          "name": "The Rock! (Hard Rock)",
+          "src": "http://listen.livestreamingservice.com:8064",
+          "desc": ""
+        },
+        {
+          "name": "True Blues",
+          "src": "http://listen.livestreamingservice.com/181-blues_128k.mp3",
+          "desc": ""
+        },
+        {
+          "name": "Jazz Mix",
+          "src": "http://listen.livestreamingservice.com/181-jazzmix_128k.mp3",
+          "desc": ""
+        },
+        {
+          "name": "Good Time Oldies",
+          "src": "http://listen.livestreamingservice.com:8046"
+        },
+        {
+          "name": "Classic Hits 181",
+          "src": "http://listen.livestreamingservice.com:8132",
+          "desc": ""
+        },
+        {
+          "name": "Beatles",
+          "src": "http://listen.livestreamingservice.com:8062",
+          "desc": ""
+        },
+        {
+          "name": "Super 70s",
+          "src": "http://listen.livestreamingservice.com:8066",
+          "desc": ""
+        },
+        {
+          "name": "Awesome 80's",
+          "src": "http://listen.livestreamingservice.com:8000",
+          "desc": ""
+        },
+        {
+          "name": "UK top 40",
+          "src": "http://listen.livestreamingservice.com:8070"
+        },
+        {
+          "name": "The Office",
+          "src": ""
+        }
+      ],
+      "icon": "img:https://www.181.fm/favicon.ico"
+    },
+    {
+      "name": "HD RADIO",
+      "streams": [
+        {
+          "name": "HD RADIO ROCK",
+          "src": "https://hdradiorock-rfritschka.radioca.st/stream?type=http&nocache=945",
+          "desc": ""
+        },
+        {
+          "name": "CLASSIC ROCK",
+          "src": "https://hdradioclassicrock-rfritschka.radioca.st/stream?type=http&nocache=9667",
+          "desc": "https://zet.pluginsandthemes.ro/http://rosetta.shoutca.st:8352/stats?sid=1"
+        },
+        {
+          "name": "THE BLUES",
+          "src": "https://haradioblues-rfritschka.radioca.st/stream?type=http&nocache=20254",
+          "desc": ""
+        },
+        {
+          "name": "ROCK 'N ROLL",
+          "src": "https://hdrockandroll-rfritschka.radioca.st/stream?type=http&nocache=6106",
+          "desc": ""
+        },
+        {
+          "name": "HOT 100",
+          "src": "https://hdradiohot100-rfritschka.radioca.st/stream?type=http&nocache=625",
+          "desc": ""
+        }
+      ],
+      "icon": "img:https://hd-radio.net/wp-content/uploads/sites/3/2024/05/HD-Radio-Network-Small.png"
+    },
+    {
+      "name": "Rock FM",
+      "streams": [
+        {
+          "name": "Rock FM Prog",
+          "src": "https://jfm1.hostingradio.ru:14536/prog.mp3"
+        },
+        {
+          "name": "Rock FM Metall",
+          "src": "https://jfm1.hostingradio.ru:14536/metal.mp3"
+        },
+        {
+          "name": "Rock FM 00`s",
+          "src": "https://jfm1.hostingradio.ru:14536/rock00.mp3"
+        },
+        {
+          "name": "Rock FM 90`s",
+          "src": "https://jfm1.hostingradio.ru:14536/rock90.mp3"
+        },
+        {
+          "name": "Rock FM 80`s",
+          "src": "https://jfm1.hostingradio.ru:14536/rock80.mp3"
+        },
+        {
+          "name": "Rock FM 70`s",
+          "src": "https://jfm1.hostingradio.ru:14536/rock80.mp3"
+        }
+      ],
+      "icon": "img:https://www.rockfm.ru/favicons/favicon-32x32.png"
+    },
+    {
+      "name": "STAR FM",
+      "streams": [
+        {
+          "name": "STAR FM Berlin",
+          "src": "https://starfm.streamabc.net/30-simulcastberlin-mp3-192-1167662",
+          "desc": "https://api.streamabc.net/metadata/channel/30_euch8c5krctp_dirs.json"
+        },
+        {
+          "name": "STAR FM Nürnberg",
+          "src": "https://stream.starfm.de/nbg/mp3-192/webseite"
+        },
+        {
+          "name": "STAR FM ROCK NRW",
+          "src": "https://stream.starfm.de/nrw/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM Rock National",
+          "src": "https://stream.starfm.de/national/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM 90s Rock",
+          "src": "https://stream.starfm.de/90srock/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM From Hell",
+          "src": "https://stream.starfm.de/fromhell/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM Hard Rock",
+          "src": "https://stream.starfm.de/hardrock/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM New Metal",
+          "src": "https://stream.starfm.de/newmetal/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM Festival Radio",
+          "src": "https://stream.starfm.de/festival/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM Rock Ballads",
+          "src": "https://stream.starfm.de/ballads/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM Feel Good Rock",
+          "src": "https://stream.starfm.de/feelgood/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM Alternative Rock",
+          "src": "https://stream.starfm.de/alternat/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM New Rock",
+          "src": "https://stream.starfm.de/newrock/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM Country Rock",
+          "src": "https://stream.starfm.de/country/mp3-192/webseite",
+          "desc": ""
+        },
+        {
+          "name": "STAR FM Blues Rock",
+          "src": "https://stream.starfm.de/blues/mp3-192/webseite",
+          "desc": ""
+        }
+      ],
+      "icon": "img:https://www.starfm.de/favicon.ico"
+    },
+    {
+      "name": "BIG R RADIO",
+      "streams": [
+        {
+          "name": "70s and 80s Pop Mix",
+          "src": "https://bigrradio.cdnstream1.com/5181_128",
+          "desc": ""
+        },
+        {
+          "name": "80s Metal FM",
+          "src": "https://bigrradio.cdnstream1.com/5186_128",
+          "desc": "https://live2.mystreamplayer.com/streamdata.php?h=bigrradio.cdnstream1.com&p=9980&i=5186_128&https=&f=ice&c=304496"
+        },
+        {
+          "name": "Alternative Rock",
+          "src": "https://bigrradio.cdnstream1.com/5189_128",
+          "desc": ""
+        },
+        {
+          "name": "90s Alternative Rock",
+          "src": "https://bigrradio.cdnstream1.com/5187_128",
+          "desc": ""
+        },
+        {
+          "name": "The Rock Mix",
+          "src": "https://bigrradio.cdnstream1.com/5172_128",
+          "desc": ""
+        },
+        {
+          "name": "Classic Rock",
+          "src": "http://bigrradio.com/asx2/1005.asx"
+        },
+        {
+          "name": "Grunge FM",
+          "src": "https://bigrradio.cdnstream1.com/5200_128",
+          "desc": ""
+        },
+        {
+          "name": "Rock Top 40",
+          "src": "https://bigrradio.cdnstream1.com/5204_128",
+          "desc": ""
+        },
+        {
+          "name": "Coffee House",
+          "src": "https://bigrradio.cdnstream1.com/5156_128",
+          "desc": ""
+        },
+        {
+          "name": "Post Grunge Rock",
+          "src": "https://bigrradio.cdnstream1.com/5203_128",
+          "desc": ""
+        },
+        {
+          "name": "Golden Oldies",
+          "src": "https://bigrradio.cdnstream1.com/5198_128",
+          "desc": ""
+        },
+        {
+          "name": "The Wave",
+          "src": "https://bigrradio.cdnstream1.com/5208_128",
+          "desc": ""
+        }
+      ],
+      "icon": "img:https://live2.mystreamplayer.com/configs/images/logo_bigrradio.png"
+    },
+    {
+      "name": "RADio CAPrice",
+      "streams": [
+        {
+          "name": "PSYCHOBILLY  HORRORBILLY",
+          "src": "http://79.111.119.111:8002/psychobilly",
+          "desc": ""
+        },
+        {
+          "name": "INDIE POP",
+          "src": "http://79.111.119.111:8002/indiepop",
+          "desc": ""
+        },
+        {
+          "name": "SURF ROCK",
+          "src": "http://79.111.119.111:8002/surfrock",
+          "desc": ""
+        },
+        {
+          "name": "РУССКИЙ ПАНК РОК",
+          "src": "http://79.120.77.11:8002/punkru",
+          "desc": ""
+        },
+        {
+          "name": " ROCK / METAL BALLADS",
+          "src": "http://79.120.77.11:8002/rockballads",
+          "desc": ""
+        },
+        {
+          "name": "STONER ROCK",
+          "src": "http://79.111.119.111:8002/stonerrock",
+          "desc": ""
+        },
+        {
+          "name": " ROCKABILLY",
+          "src": "http://79.111.14.76:8002/rockabilly",
+          "desc": ""
+        },
+        {
+          "name": "MELODIC HARD ROCK",
+          "src": "http://79.111.14.76:8002/aor",
+          "desc": ""
+        },
+        {
+          "name": "BLUES ROCK",
+          "src": "http://79.120.39.202:8002/bluesrock",
+          "desc": ""
+        },
+        {
+          "name": "SOUTHERN ROCK",
+          "src": "http://79.111.14.76:8002/southernrock",
+          "desc": ""
+        },
+        {
+          "name": "POST ROCK",
+          "src": "http://79.111.14.76:8002/postrock",
+          "desc": ""
+        },
+        {
+          "name": "SHOEGAZING ",
+          "src": "http://79.111.119.111:8002/shoegazing",
+          "desc": ""
+        },
+        {
+          "name": "NEO-PROGRESSIVE ROCK",
+          "src": "http://79.111.119.111:8002/neoprogrock",
+          "desc": ""
+        }
+      ],
+      "icon": "img:http://radcap.ru/favicon.ico"
+    },
+    {
+      "name": "НАШЕ Радио",
+      "streams": [],
+      "icon": "img:https://www.nashe.ru/favicons/favicon.ico"
+    },
+    {
+      "name": "Planet Radio",
+      "streams": [],
+      "icon": "img:https://planetradio.co.uk/tesla/static/favicons/planet-radio/favicon.ico"
+    },
+    {
+      "name": "St. Louis Classic Rock",
+      "streams": [],
+      "icon": "img:https://stlouisclassicrock.com/favicon.ico"
+    }
+  ],
+  "icon": "las la-headphones"
+}

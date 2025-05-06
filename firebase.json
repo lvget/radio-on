@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "dist/pwa",
+    "site": "radio-on",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
