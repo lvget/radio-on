@@ -2,22 +2,31 @@
   "name": "Rock",
   "collections": [
     {
-      "name": "Популярное",
+      "name": "Rock #1",
       "streams": [
         {
           "name": "Неслучайное радио",
           "src": "http://aska.ru-hoster.com:8006/stream",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.radiobells.com/stations/nesrock.webp"
         },
         {
           "name": "Два Берега",
           "src": "https://radio-connect.dline-media.com/ber_FM.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://top-radio.ru/assets/image/radio/180/radio-dva-berega.png"
         },
         {
           "name": "Rock FM",
           "src": "https://nashe1.hostingradio.ru/rock-128.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.rockfm.ru/img/logo-rock.png"
+        },
+        {
+          "name": "Король и Шут",
+          "src": "https://srv11.gpmradio.ru:8443/stream/pro/aac/64/191",
+          "desc": "https://cors-anywhere.herokuapp.com/https://srv11.gpmradio.ru:8443/stream/pro/aac/64/191",
+          "img": "https://cdn0.101.ru/proxy/vardata/modules/channel/image/d0a7aa8d531fc7f0fe49ba70b4f6400b.png?w=300&h=300&pos=center&q=100&t=1565608962"
         },
         {
           "name": "Bar Legend Radio",
@@ -32,7 +41,8 @@
         {
           "name": "Classic Rock Florida",
           "src": "https://vip2.fastcast4u.com/proxy/classicrockdoug?mp=/1",
-          "desc": ""
+          "desc": "",
+          "img": "https://img1.wsimg.com/isteam/ip/a03fc5ad-e0a9-4726-80d4-3fe65da6d855/Classic%20Rock%20Florida%20B.png/:/rs=w:118,h:118,cg:true,m/cr=w:118,h:118/qt=q:95"
         }
       ]
     },
@@ -42,98 +52,117 @@
         {
           "name": "The Buzz (Alt. Rock)",
           "src": "https://listen.181fm.com/181-buzz_128k.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-buzz_300.webp"
         },
         {
           "name": "90's Alternative",
           "src": "https://listen.181fm.com/181-90salt_128k.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-90salt_300.webp"
         },
         {
           "name": "Classic Buzz (Alt)",
           "src": "https://listen.livestreamingservice.com:8038",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-classicbuzz_300.webp"
         },
         {
           "name": "The Eagle (Classic)",
           "src": "https://listen.livestreamingservice.com:8030",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-eagle_300.webp"
         },
         {
           "name": "Rock 181",
           "src": "https://listen.181fm.com/181-rock_128k.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-rock_300.webp"
         },
         {
           "name": "Rock 40 (Rock & Roll)",
           "src": "https://listen.livestreamingservice.com:8028",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-rock40_300.webp"
         },
         {
           "name": "80's Hairband",
           "src": "https://listen.livestreamingservice.com:8014",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-hairband_300.webp"
         },
         {
           "name": "Yacht Rock",
           "src": "https://listen.181fm.com/181-yachtrock_128k.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-yachtrock_300.webp"
         },
         {
           "name": "Chloe @181.FM",
           "src": "https://listen.livestreamingservice.com:8100",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-chloe_300.webp"
         },
         {
           "name": "The Point",
-          "src": "https://list",
-          "desc": ""
+          "src": "https://listen.181fm.com/181-thepoint_128k.mp3",
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-thepoint_300.webp"
         },
         {
           "name": "The Rock! (Hard Rock)",
           "src": "https://listen.181fm.com/181-hardrock_128k.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-hardrock_300.webp"
         },
         {
           "name": "True Blues",
           "src": "https://listen.181fm.com/181-blues_128k.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-blues_300.webp"
         },
         {
           "name": "Jazz Mix",
           "src": "https://listen.181fm.com/181-jazzmix_128k.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-jazzmix_300.webp"
         },
         {
           "name": "Good Time Oldies",
-          "src": "https://listen.181fm.com/181-goodtime_128k.mp3"
+          "src": "https://listen.181fm.com/181-goodtime_128k.mp3",
+          "img": "https://www.181.fm/images/station-thumbnails/181-goodtime_300.webp"
         },
         {
           "name": "Classic Hits 181",
           "src": "https://listen.livestreamingservice.com:8132",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-greatoldies_300.webp"
         },
         {
           "name": "Beatles",
           "src": "https://listen.181fm.com/181-beatles_128k.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-beatles_300.webp"
         },
         {
           "name": "Super 70s",
           "src": "https://listen.181fm.com/181-70s_128k.mp3",
-          "desc": ""
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-70s_300.webp"
         },
         {
           "name": "Awesome 80's",
-          "src": "https://listen.livestreamingservice.com:8000",
-          "desc": ""
+          "src": "https://listen.181fm.com/181-awesome80s_128k.mp3",
+          "desc": "",
+          "img": "https://www.181.fm/images/station-thumbnails/181-awesome80s_300.webp"
         },
         {
           "name": "UK top 40",
-          "src": "https://listen.livestreamingservice.com:8070"
+          "src": "https://listen.181fm.com/181-uktop40_128k.mp3",
+          "img": "https://www.181.fm/images/station-thumbnails/181-uktop40_300.webp"
         }
       ],
-      "icon": "img:https://www.181.fm/favicon.ico"
+      "icon": "https://www.181.fm/favicon.ico"
     },
     {
       "name": "HD RADIO",
@@ -164,7 +193,7 @@
           "desc": ""
         }
       ],
-      "icon": "img:https://hd-radio.net/wp-content/uploads/sites/3/2024/05/HD-Radio-Network-Small.png"
+      "icon": "https://hd-radio.net/wp-content/uploads/sites/3/2024/05/HD-Radio-Network-Small.png"
     },
     {
       "name": "Rock FM",
@@ -194,7 +223,7 @@
           "src": "https://jfm1.hostingradio.ru:14536/rock80.mp3"
         }
       ],
-      "icon": "img:https://www.rockfm.ru/favicons/favicon-32x32.png"
+      "icon": "https://www.rockfm.ru/favicons/favicon-32x32.png"
     },
     {
       "name": "STAR FM",
@@ -274,7 +303,7 @@
           "desc": ""
         }
       ],
-      "icon": "img:https://www.starfm.de/favicon.ico"
+      "icon": "https://www.starfm.de/favicon.ico"
     },
     {
       "name": "BIG R RADIO",
@@ -339,22 +368,22 @@
           "desc": ""
         }
       ],
-      "icon": "img:https://live2.mystreamplayer.com/configs/images/logo_bigrradio.png"
+      "icon": "https://live2.mystreamplayer.com/configs/images/logo_bigrradio.png"
     },
     {
       "name": "НАШЕ Радио",
       "streams": [],
-      "icon": "img:https://www.nashe.ru/favicons/favicon.ico"
+      "icon": "https://www.nashe.ru/favicons/favicon.ico"
     },
     {
       "name": "Planet Radio",
       "streams": [],
-      "icon": "img:https://planetradio.co.uk/tesla/static/favicons/planet-radio/favicon.ico"
+      "icon": "https://planetradio.co.uk/tesla/static/favicons/planet-radio/favicon.ico"
     },
     {
       "name": "St. Louis Classic Rock",
       "streams": [],
-      "icon": "img:https://stlouisclassicrock.com/favicon.ico"
+      "icon": "https://stlouisclassicrock.com/favicon.ico"
     }
   ],
   "icon": "las la-headphones"

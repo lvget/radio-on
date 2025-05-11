@@ -10,7 +10,9 @@
         <q-input v-model="_new.name" label="Название" />
         <q-input v-model="_new.icon" label="icon">
           <template v-slot:append>
-            <q-icon :name="_new.icon" />
+            <div>
+              <q-icon :name="icon(_new)" />
+            </div>
           </template>
         </q-input>
       </q-card-section>
@@ -47,6 +49,9 @@ const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginC
 function onOKClick() {
   onDialogOK(_new)
 }
+function icon(playlist: Playlist) {
+  if (playlist.icon.startsWith('http'))
+    return 'img' + playlist.icon;
+  return playlist.icon;
+}
 </script>
-
-<style scoped></style>

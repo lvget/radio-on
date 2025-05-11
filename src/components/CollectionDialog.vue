@@ -10,7 +10,7 @@
         <q-input v-model="_new.name" label="Название" />
         <q-input v-model="_new.icon" label="icon">
           <template v-slot:append>
-            <q-icon :name="_new.icon" />
+            <q-icon :name="icon(_new)" />
           </template>
         </q-input>
       </q-card-section>
@@ -44,6 +44,12 @@ defineEmits([...useDialogPluginComponent.emits]);
 const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginComponent();
 function onOKClick() {
   onDialogOK(_new)
+}
+
+function icon(collection: AudioCollection) {
+  if (collection.icon?.startsWith('http'))
+    return 'img:' + collection.icon;
+  return collection.icon;
 }
 </script>
 

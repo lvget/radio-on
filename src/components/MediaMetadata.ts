@@ -4,18 +4,21 @@ import streamData from './StreamData';
 import AudioLibrary from './AudioLibrary';
 
 if ('mediaSession' in navigator) {
+  const defaultArtwork256 = 'https://radio-on.web.app/icons/icon-256x256.png';
+  const defaultArtwork512 = 'https://radio-on.web.app/icons/icon-256x256.png';
+
   let metadata = new MediaMetadata({
     title: 'radio-on.web.app',
     artist: '',
     album: '',
     artwork: [
       {
-        src: 'https://radio-on.web.app/icons/icon-256x256.png',
+        src: defaultArtwork256,
         sizes: '256x256',
         type: 'image/png',
       },
       {
-        src: 'https://radio-on.web.app/icons/icon-512x512.png',
+        src: defaultArtwork512,
         sizes: '512x512',
         type: 'image/png',
       },
@@ -39,6 +42,13 @@ if ('mediaSession' in navigator) {
     () => AudioLibrary.currentStream,
     (stream) => {
       metadata.title = stream.name;
+      if (AudioLibrary.currentStream.img) {
+        metadata.artwork[0].src = AudioLibrary.currentStream.img;
+        metadata.artwork[1].src = AudioLibrary.currentStream.img;
+      } else {
+        metadata.artwork[0].src = defaultArtwork256;
+        metadata.artwork[1].src = defaultArtwork512;
+      }
     }
   );
 
@@ -65,6 +75,6 @@ if ('mediaSession' in navigator) {
     AudioLibrary.prevStream();
   });
   navigator.mediaSession.setActionHandler('nexttrack', () => {
-    AudioLibrary.nextStrem();
+    AudioLibrary.nextStream();
   });
 }

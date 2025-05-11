@@ -13,7 +13,7 @@ watch(
   () => library.currentStream,
   (stream: AudioStream) => {
     streamData.title = '';
-    streamData.image = '';
+    streamData.image = stream.img || '';
     statsListener?.stop();
     statsListener = new IcecastMetadataStats(stream.desc || stream.src, {
       sources: ['icy', 'ogg'], //, 'stats', '7.html', 'status-json.xsl'],
@@ -35,12 +35,12 @@ const onStats = (stats: any) => {
 
     if (title && title !== streamData.title) {
       streamData.title = title;
-      loadAlbomImage(title);
+      loadAlbumImage(title);
     }
   }
 };
 
-function loadAlbomImage(title: string) {
+function loadAlbumImage(title: string) {
   fetch(`https://live2.mystreamplayer.com/album.php?key=${title}`).then(
     (res) => {
       res.json().then((json) => {

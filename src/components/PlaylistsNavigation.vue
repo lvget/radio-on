@@ -1,7 +1,7 @@
 <template>
   <q-scroll-area class="fit">
     <q-toolbar>
-      Плейлисты
+      Radio-On
       <q-space />
       <q-btn flat round dense icon="las la-cloud-download-alt" @click="AudioLibrary.openPlaylist()"
         title="Загрузить плейлист" />
@@ -64,7 +64,7 @@
               :class="{ 'active ': isActive(s) }">
               <q-item-section avatar>
                 <q-avatar class="bg1 text2">
-                  <q-icon :name="s.icon || 'las la-music'" />
+                  <q-icon :name="icon(s)" />
                 </q-avatar>
               </q-item-section>
 
@@ -106,7 +106,11 @@ import AudioLibrary, { AudioCollection, Playlist } from './AudioLibrary';
 function isActive(c: AudioCollection) {
   return c == AudioLibrary.currentCollection;
 }
-
+function icon(collection: AudioCollection) {
+  if (collection.icon?.startsWith('http'))
+    return 'img:' + collection.icon;
+  return collection.icon || 'las la-music';
+}
 </script>
 
 <style scoped></style>

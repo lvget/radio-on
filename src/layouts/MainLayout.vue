@@ -3,7 +3,7 @@
     <q-header reveal class="bg1 text1">
       <q-toolbar>
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title>RadiOn</q-toolbar-title>{{ library.currentCollection.name }}
+        <q-toolbar-title>{{ library.currentCollection.name }}</q-toolbar-title>
         <q-space />
         <q-btn class="menu-btn" flat dense icon="las la-ellipsis-v" round>
           <q-menu>
@@ -34,7 +34,7 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg2 text2">
-      <PlayistsNavigation />
+      <PlaylistsNavigation />
     </q-drawer>
 
     <q-footer class="bg1 text1">
@@ -50,7 +50,7 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue';
 import AudioPlayerUI from 'components/AudioPlayerUI.vue';
-import PlayistsNavigation from 'components/PlayistsNavigation.vue';
+import PlaylistsNavigation from 'components/PlaylistsNavigation.vue';
 import library from 'components/AudioLibrary';
 import { setCssVar } from 'quasar'
 import { HSL } from 'src/components/HSL';
@@ -61,7 +61,7 @@ const theme = ref('#000');
 const bg1 = ref('#000');
 const bg2 = ref('#000');
 const bgActive = ref('#000');
-const bgAccsent = ref('#000');
+const bgAccent = ref('#000');
 const bgLiter = ref('#000');
 const text1 = ref('#fff');
 const text2 = ref('#fff');
@@ -70,9 +70,6 @@ const textAccent = ref('#fff');
 
 chgColor(LocalStorage.getItem('theme') || '#000');
 
-const t = reactive({
-  bg1: '#000',
-})
 defineOptions({
   name: 'MainLayout',
 });
@@ -92,17 +89,17 @@ function chgColor(color: string) {
   bgActive.value = hsl.clone().rotate(15).lighten(15).toHex();
   textActive.value = HSL.fromHex(bgActive.value).lighten(50).saturate(50).toHex()
 
-  let accsent = hsl.clone().rotate(120);
-  accsent.s = 100;
-  accsent.l = lite ? 25 : 75;
-  bgAccsent.value = accsent.toHex(); //.lighten(100).toHex();
-  textAccent.value = HSL.fromHex(bgAccsent.value).lighten(100).toHex();
+  let accent = hsl.clone().rotate(120);
+  accent.s = 100;
+  accent.l = lite ? 25 : 75;
+  bgAccent.value = accent.toHex(); //.lighten(100).toHex();
+  textAccent.value = HSL.fromHex(bgAccent.value).lighten(100).toHex();
 
   bgLiter.value = hsl.clone().lighten(30).toHex();
   text1.value = lite ? '#000' : '#fff';
   text2.value = HSL.fromHex(bg2.value).lighten(65).toHex(); // hsl.l >50? '#000' : '#fff';
 
-  setCssVar('accsent', bgAccsent.value)
+  setCssVar('accent', bgAccent.value)
   setCssVar('primary', textActive.value)
 
   LocalStorage.setItem('theme', theme.value);
@@ -123,13 +120,12 @@ function login() {
   background-color: v-bind(bg2);
 }
 
-.bg-accsent {
-  background-color: v-bind(bgAccsent);
+.bg-accent {
+  background-color: v-bind(bgAccent);
 }
 
-.accsent {
-  color: v-bind(bgAccsent);
-
+.accent {
+  color: v-bind(bgAccent);
 }
 
 .bg-liter {
@@ -143,11 +139,13 @@ function login() {
 .text1 {
   color: v-bind(text1);
   border-color: v-bind(text1);
+
 }
 
 .text2 {
   color: v-bind(text2);
   border-color: v-bind(text2);
+  text-shadow: 1px 1px 2px v-bind(bg1);
 }
 
 .active {

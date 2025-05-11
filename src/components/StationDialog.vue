@@ -10,6 +10,7 @@
         <q-input v-model="_new.name" label="Название" />
         <q-input v-model="_new.src" label="Url Потока" />
         <q-input v-model="_new.desc" label="Url Данных" />
+        <q-input v-model="_new.img" label="Изображение" />
       </q-card-section>
 
       <q-card-actions align="right">
@@ -33,6 +34,7 @@ const _new = reactive<AudioStream>({
   name: 'Radio',
   src: 'http://',
   desc: '',
+  img: ''
 })
 
 Object.assign(_new, props.stream);

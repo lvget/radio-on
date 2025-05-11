@@ -88,11 +88,11 @@ audio.addEventListener('loadstart', (event) => {
 
 audio.addEventListener('loadeddata', (event) => {
   console.log('loadeddata');
-  player.status = PlayerStatus.waiting;
+  //player.status = PlayerStatus.waiting;
 });
 
 audio.addEventListener('loadedmetadata', (event) => {
-  console.log('loadedmetadata');
+  console.log('loadedmetadata', event);
 });
 
 audio.addEventListener('waiting', (event) => {

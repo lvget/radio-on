@@ -10,6 +10,7 @@ export type AudioStream = {
   name: string;
   src: string;
   desc: string;
+  img?: string;
 };
 
 export type AudioCollection = {
@@ -30,10 +31,11 @@ let EmptyPlaylist: Playlist = {
   collections: [],
 };
 
-const EmptyStream = {
+const EmptyStream: AudioStream = {
   name: '',
   src: '',
   desc: '',
+  img: '',
 };
 
 const EmptyCollection: AudioCollection = {
@@ -65,7 +67,6 @@ const stor = reactive({
   play() {
     player.play(this.currentStream.src);
     player.muted = false;
-    document.title = this.currentStream.name;
   },
   pause() {
     player.pause();
@@ -77,7 +78,7 @@ const stor = reactive({
       player.stop();
     }
   },
-  nextStrem() {
+  nextStream() {
     let idx = this.currentCollection.streams.findIndex(
       (item) => item.name == this.currentStream.name
     );
