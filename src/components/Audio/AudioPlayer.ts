@@ -1,9 +1,21 @@
 import { reactive, watch } from 'vue';
 import { IPlayer, PlayerStatus } from './IPlayer';
 import { LocalStorage } from 'quasar';
+import * as equalizer from './Equalizer';
 
-const audio = new Audio();
+let audio = new Audio();
 audio.crossOrigin = 'anonymous';
+
+let audioContext = new window.AudioContext(); //(window.AudioContext || window.webkitAudioContext)();
+let audioSource = audioContext.createMediaElementSource(audio);
+
+let analyser = audioContext.createAnalyser();
+analyser.fftSize = 256;
+
+equalizer.init(audioContext);
+//equalizer.input(audioSource).connect(audioContext.destination);
+equalizer.input(audioSource).connect(analyser);
+analyser.connect(audioContext.destination);
 
 const player = reactive<IPlayer>({
   status: PlayerStatus.stoping,
@@ -57,6 +69,10 @@ const player = reactive<IPlayer>({
   getAudio() {
     return audio;
   },
+});
+
+audio.addEventListener('canplay', (event) => {
+  console.log('canplay');
 });
 
 audio.addEventListener('playing', (event) => {
@@ -115,14 +131,12 @@ function loadState() {
   }
 }
 
-//player.src,
-watch(
-  () => [player.volume],
-  () => {
-    saveState();
-  }
-);
+window.addEventListener('beforeunload', () => {
+  saveState();
+});
 
 loadState();
 
-export default player;
+//export default player;
+
+export { player, analyser };

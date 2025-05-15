@@ -13,9 +13,9 @@
                 <q-item-section>Вход</q-item-section>
               </q-item>
               <q-separator />
-              <q-item clickable to="/visualisation" v-close-popup>
-                <q-item-section avatar><q-icon name="las la-palette" /></q-item-section>
-                <q-item-section>Визуализация</q-item-section>
+              <q-item clickable to="/settings" v-close-popup>
+                <q-item-section avatar><q-icon name="las la-cog" /></q-item-section>
+                <q-item-section>Настройки</q-item-section>
               </q-item>
               <q-item clickable>
                 <q-item-section avatar><q-icon name="las la-palette" /></q-item-section>

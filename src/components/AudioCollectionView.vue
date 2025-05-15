@@ -35,31 +35,42 @@
       </div>
 
 
-      <div v-if="view == 'list'" style="max-width: 845px; margin: 0 auto;" class="text2">
+      <div v-if="view == 'list'" style="max-width: 845px;  margin: 0 auto;">
         <template v-for="(s, i) in AudioLibrary.currentCollection.streams" :key="s.name">
-          <div class="row items-center q-my-md q-gutter-sm cursor-pointer" @click="play(s)">
+          <div class="row items-center q-pb-xs q-pr-sm q-ma-xs q-gutter-xs cursor-pointer text2"
+            :class="[s.src == AudioLibrary.currentStream.src ? 'active' : '']" @click="play(s)">
 
             <div>
-              <q-img :src="s.img || '/icons/favicon-128x128.png'"
-                style="width: 50px; height: 50px; border-radius: 50%;" />
+              <q-img :src="s.img || '/icons/favicon-128x128.png'" class="stream-list-cover" />
             </div>
             <div class="col">
-              <div class="text-bold text1">{{ s.name }}</div>
-              <div style="font-size: 0.7em">{{ s.src }}</div>
+              <div class="text1 ellipsis" style="font-size: 1.2em">{{ s.name }}</div>
+              <div class="text2 ellipsis" style="font-size: 0.65em">{{ s.src }}</div>
             </div>
             <div>
               <template v-if="s == AudioLibrary.currentStream">
                 <q-spinner-audio size="2em" v-if="player.isPlay()" class="accent" />
-                <q-inner-loading :showing="player.isWaiting()" label="loading..." label-style="font-size: 1.1em"
-                  class="accent" />
+                <q-spinner-ios v-if="player.isWaiting()" size="2em" class="accent" />
               </template>
             </div>
             <div>
               <q-icon name="lar la-star" :class="favorites[i] ? 'accent' : 'text2'" @click.stop="toggleFavorite(s);" />
             </div>
+
+            <q-menu touch-position context-menu dense>
+              <q-list>
+                <q-item clickable @click="AudioLibrary.editStream(s);" v-close-popup>
+                  <q-item-section avatar><q-icon name="las la-edit" /></q-item-section>
+                  <q-item-section>Редактировать</q-item-section>
+                </q-item>
+                <q-item clickable @click="AudioLibrary.removeStream(s);" v-close-popup>
+                  <q-item-section avatar><q-icon name="las la-trash" /></q-item-section>
+                  <q-item-section>Удалить</q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
           </div>
-
-
+          <q-separator />
         </template>
       </div>
 
@@ -103,6 +114,16 @@ initFavorites();
 </script>
 
 <style scoped>
+.stream-list-cover {
+  width: 50px;
+  height: 50px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  overflow: hidden;
+  background-size: cover;
+}
+
 .stream-card {
   width: 110px;
   margin: 10px 5px;
