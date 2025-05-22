@@ -1,7 +1,7 @@
 import { reactive, watch } from 'vue';
 import { IPlayer, PlayerStatus } from './IPlayer';
 import { LocalStorage } from 'quasar';
-import * as equalizer from './Equalizer';
+import equalizer from './Equalizer';
 
 let audio = new Audio();
 audio.crossOrigin = 'anonymous';
@@ -13,9 +13,9 @@ let analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;
 
 equalizer.init(audioContext);
-//equalizer.input(audioSource).connect(audioContext.destination);
-equalizer.input(audioSource).connect(analyser);
-analyser.connect(audioContext.destination);
+equalizer.input(audioSource).connect(audioContext.destination);
+//equalizer.input(audioSource).connect(analyser);
+//analyser.connect(audioContext.destination);
 
 const player = reactive<IPlayer>({
   status: PlayerStatus.stoping,
@@ -118,6 +118,8 @@ audio.addEventListener('waiting', (event) => {
 
 function saveState() {
   LocalStorage.set('player', player);
+  LocalStorage.set('equalizer', equalizer.state);
+  console.log(equalizer.state);
 }
 
 function loadState() {
@@ -129,6 +131,17 @@ function loadState() {
     //  (player as Record<string, any>)[k] = state[k];
     //}
   }
+  let x = {
+    get state() {
+      return 555;
+    },
+    set state(v) {
+      console.log(v);
+    },
+  };
+  let s = equalizer.state;
+  console.log('loadState', s);
+  equalizer.state = LocalStorage.getItem('equalizer') ?? equalizer.state;
 }
 
 window.addEventListener('beforeunload', () => {

@@ -6,7 +6,7 @@
       "streams": [
         {
           "name": "Неслучайное радио",
-          "src": "http://aska.ru-hoster.com:8006/stream",
+          "src": "https://aska.ru-hoster.com:8006/stream",
           "desc": "",
           "img": "https://www.radiobells.com/stations/nesrock.webp"
         },
@@ -25,8 +25,14 @@
         {
           "name": "Король и Шут",
           "src": "https://srv11.gpmradio.ru:8443/stream/pro/aac/64/191",
-          "desc": "https://cors-anywhere.herokuapp.com/https://srv11.gpmradio.ru:8443/stream/pro/aac/64/191",
+          "desc": "",
           "img": "https://cdn0.101.ru/proxy/vardata/modules/channel/image/d0a7aa8d531fc7f0fe49ba70b4f6400b.png?w=300&h=300&pos=center&q=100&t=1565608962"
+        },
+        {
+          "name": "Наутилус Помпилиус",
+          "src": "https://pub0202.101.ru:8443/stream/pro/aac/64/126",
+          "desc": "",
+          "img": "https://top-radio.ru/assets/image/radio/180/nautilus-pompilius-101ru.jpg"
         },
         {
           "name": "Bar Legend Radio",
