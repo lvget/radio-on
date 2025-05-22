@@ -15,7 +15,7 @@
     "test": "echo \"No test specified\" && exit 0",
     "icongenie": "icongenie generate -m pwa --icon src/assets/icon2.png",
     "backup": "node ../backup.js b",
-    "git:push": "git add . && git commit -m \"update\" && git push origin master"
+    "git:push": "git add . && git commit -m \"update\" && git push origin main"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",

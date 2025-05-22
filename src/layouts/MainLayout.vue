@@ -8,7 +8,7 @@
         <q-btn class="menu-btn" flat dense icon="las la-ellipsis-v" round>
           <q-menu>
             <q-list>
-              <q-item clickable @click="login()" v-close-popup>
+              <q-item clickable to="/login" v-close-popup>
                 <q-item-section avatar><q-icon name="las la-user" /></q-item-section>
                 <q-item-section>Вход</q-item-section>
               </q-item>
