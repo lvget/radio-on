@@ -39,3 +39,4 @@ yarn-error.log*
 *.cache
 *~
 ~*
+/src/firebase/config.json

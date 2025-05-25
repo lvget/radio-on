@@ -9,6 +9,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require('quasar/wrappers');
+const version_increment = require('./version-increment');
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -52,7 +53,7 @@ module.exports = configure(function (/* ctx */) {
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
       // publicPath: '/',
-      // analyze: true,
+      analyze: true,
       // env: {},
       // rawDefine: {}
       // ignorePublicFolder: true,
@@ -77,6 +78,9 @@ module.exports = configure(function (/* ctx */) {
           { server: false },
         ],
       ],
+      beforeBuild: function () {
+        version_increment('public/version.json');
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer

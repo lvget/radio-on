@@ -1,43 +1,39 @@
 <template>
-  <q-card class="social-auth-card q-pa-md">
-    <q-card-section class="text-center">
-      <div class="text-h6 q-mb-md">Войти через соцсети</div>
+  <div class="social-auth-card text-center q-pa-md">
+    <div class="text-h q-mb-md">Войти через соцсети</div>
 
-      <div class="row q-gutter-md justify-center">
-        <!-- Google -->
-        <q-btn round color="red" icon="fa-brands fa-google" @click="signInWithProvider('google')"
-          :loading="loading.google">
-          <q-tooltip>Войти с Google</q-tooltip>
-        </q-btn>
+    <div class="row q-gutter-md justify-center">
+      <!-- Google -->
+      <q-btn round color="red" icon="fa-brands fa-google" @click="signInWithProvider('google')"
+        :loading="loading.google">
+        <q-tooltip>Войти с Google</q-tooltip>
+      </q-btn>
 
-        <!-- Facebook -->
-        <q-btn round color="blue" icon="fa-brands fa-facebook-f" @click="signInWithProvider('facebook')"
-          :loading="loading.facebook">
-          <q-tooltip>Войти с Facebook</q-tooltip>
-        </q-btn>
+      <!-- Facebook -->
+      <q-btn round color="blue" icon="fa-brands fa-facebook-f" @click="signInWithProvider('facebook')"
+        :loading="loading.facebook">
+        <q-tooltip>Войти с Facebook</q-tooltip>
+      </q-btn>
 
-        <!-- Twitter -->
-        <q-btn round color="light-blue" icon="fa-brands fa-twitter" @click="signInWithProvider('twitter')"
-          :loading="loading.twitter">
-          <q-tooltip>Войти с Twitter</q-tooltip>
-        </q-btn>
+      <!-- Twitter -->
+      <q-btn round color="light-blue" icon="fa-brands fa-twitter" @click="signInWithProvider('twitter')"
+        :loading="loading.twitter">
+        <q-tooltip>Войти с Twitter</q-tooltip>
+      </q-btn>
 
-        <!-- GitHub -->
-        <q-btn round color="dark" icon="fa-brands fa-github" @click="signInWithProvider('github')"
-          :loading="loading.github">
-          <q-tooltip>Войти с GitHub</q-tooltip>
-        </q-btn>
+      <!-- GitHub -->
+      <q-btn round color="dark" icon="fa-brands fa-github" @click="signInWithProvider('github')"
+        :loading="loading.github">
+        <q-tooltip>Войти с GitHub</q-tooltip>
+      </q-btn>
 
-        <!-- Microsoft -->
-        <q-btn round color="grey-8" icon="fa-brands fa-microsoft" @click="signInWithProvider('microsoft')"
-          :loading="loading.microsoft">
-          <q-tooltip>Войти с Microsoft</q-tooltip>
-        </q-btn>
-      </div>
-
-      <div class="text-caption q-mt-md">Или используйте email и пароль</div>
-    </q-card-section>
-  </q-card>
+      <!-- Microsoft -->
+      <q-btn round color="grey-8" icon="fa-brands fa-microsoft" @click="signInWithProvider('microsoft')"
+        :loading="loading.microsoft">
+        <q-tooltip>Войти с Microsoft</q-tooltip>
+      </q-btn>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -51,7 +47,7 @@ import {
   twitterProvider,
   githubProvider,
   microsoftProvider
-} from '../../firebase/config'
+} from 'src/firebase/config'
 
 const $q = useQuasar()
 

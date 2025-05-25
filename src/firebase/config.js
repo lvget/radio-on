@@ -9,12 +9,13 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  apiKey: 'AIzaSyB4ttwcs82cTrCuRq3zfwpXOvaG5bi_E7Q',
+  authDomain: 'onlineradio-d76b5.firebaseapp.com',
+  projectId: 'onlineradio-d76b5',
+  storageBucket: 'onlineradio-d76b5.firebasestorage.app',
+  messagingSenderId: '816839944804',
+  appId: '1:816839944804:web:d9030f174f3e064f41cd71',
+  measurementId: 'G-TXVVTMCTX0',
 };
 
 const app = initializeApp(firebaseConfig);

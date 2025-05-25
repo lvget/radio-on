@@ -1,43 +1,33 @@
 <template>
-  <q-card class="auth-card q-pa-md bg1">
-    <q-card-section>
+  <div class="auth-card q-pa-md bg1">
+    <!-- <q-card-section>
       <div class="text-h6 text-center">Авторизация</div>
-    </q-card-section>
+    </q-card-section> -->
 
-    <q-card-section>
-      <q-form @submit.prevent="handleLogin">
-        <q-input v-model="email" label="Email" type="email" outlined lazy-rules
-          :rules="[val => !!val || 'Email обязателен', isValidEmail]" class="q-mb-md" />
 
-        <q-input v-model="password" label="Пароль" :type="showPassword ? 'text' : 'password'" outlined lazy-rules
-          :rules="[val => !!val || 'Пароль обязателен', val => val.length >= 6 || 'Пароль должен быть не менее 6 символов']"
-          class="q-mb-md">
-          <template v-slot:append>
-            <q-icon :name="showPassword ? 'visibility_off' : 'visibility'" class="cursor-pointer"
-              @click="showPassword = !showPassword" />
-          </template>
-        </q-input>
+    <q-form @submit.prevent="handleLogin">
+      <q-input dense v-model="email" label="Email" type="email" outlined lazy-rules input-class="bg2 text2"
+        :rules="[val => !!val || 'Email обязателен', isValidEmail]" class="q-mb-xs" />
 
-        <div class="row q-mb-md">
-          <q-checkbox v-model="rememberMe" label="Запомнить меня" />
-        </div>
+      <q-input dense v-model="password" label="Пароль" :type="showPassword ? 'text' : 'password'" outlined lazy-rules
+        :rules="[val => !!val || 'Пароль обязателен', val => val.length >= 6 || 'Пароль должен быть не менее 6 символов']"
+        class="q-mb-xs" input-class="bg2 text2">
+        <template v-slot:append>
+          <q-icon :name="showPassword ? 'visibility_off' : 'visibility'" class="cursor-pointer"
+            @click="showPassword = !showPassword" />
+        </template>
+      </q-input>
 
-        <div class="row q-gutter-md">
-          <q-btn label="Войти" type="submit" color="primary" class="full-width" :loading="loading" />
-          <q-btn label="Регистрация" color="secondary" class="full-width" @click="toggleAuthMode" :disable="loading" />
-        </div>
-      </q-form>
-
-      <div class="text-center q-mt-md">
-        <q-btn label="Войти с Google" color="red" icon="fa-brands fa-google" @click="signInWithGoogle"
-          :loading="googleLoading" />
+      <div class="row q-gutter-md">
+        <q-btn label="Войти" type="submit" color="primary" class="full-width" :loading="loading" />
       </div>
+    </q-form>
 
-      <div class="text-center q-mt-md">
-        <q-btn label="Забыли пароль?" flat color="primary" @click="resetPassword" :disable="loading" />
-      </div>
-    </q-card-section>
-  </q-card>
+    <div class="text-center q-mt-md">
+      <q-btn label="Забыли пароль?" flat color="primary" @click="resetPassword" :disable="loading" no-caps />
+    </div>
+
+  </div>
 </template>
 
 <script setup>
@@ -56,7 +46,7 @@ const $q = useQuasar()
 const email = ref('')
 const password = ref('')
 const showPassword = ref(false)
-const rememberMe = ref(false)
+//const rememberMe = ref(false)
 const loading = ref(false)
 const googleLoading = ref(false)
 const isLoginMode = ref(true)
