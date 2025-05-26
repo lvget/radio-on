@@ -6,16 +6,17 @@ import equalizer from './Equalizer';
 let audio = new Audio();
 audio.crossOrigin = 'anonymous';
 
-let audioContext = new window.AudioContext(); //(window.AudioContext || window.webkitAudioContext)();
-let audioSource = audioContext.createMediaElementSource(audio);
-
+let audioContext = new window.AudioContext();
 let analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;
-
 equalizer.init(audioContext);
-equalizer.input(audioSource).connect(audioContext.destination);
-//equalizer.input(audioSource).connect(analyser);
-//analyser.connect(audioContext.destination);
+
+function init() {
+  let audioSource = audioContext.createMediaElementSource(audio);
+  equalizer.input(audioSource).connect(audioContext.destination);
+  //equalizer.input(audioSource).connect(analyser);
+  //analyser.connect(audioContext.destination);
+}
 
 const player = reactive<IPlayer>({
   status: PlayerStatus.stoping,
@@ -118,8 +119,7 @@ audio.addEventListener('waiting', (event) => {
 
 function saveState() {
   LocalStorage.set('player', player);
-  LocalStorage.set('equalizer', equalizer.state);
-  console.log(equalizer.state);
+  //LocalStorage.set('equalizer', equalizer.state);
 }
 
 function loadState() {
@@ -131,17 +131,8 @@ function loadState() {
     //  (player as Record<string, any>)[k] = state[k];
     //}
   }
-  let x = {
-    get state() {
-      return 555;
-    },
-    set state(v) {
-      console.log(v);
-    },
-  };
-  let s = equalizer.state;
-  console.log('loadState', s);
-  equalizer.state = LocalStorage.getItem('equalizer') ?? equalizer.state;
+
+  //equalizer.state = LocalStorage.getItem('equalizer') ?? equalizer.state;
 }
 
 window.addEventListener('beforeunload', () => {
@@ -152,4 +143,8 @@ loadState();
 
 //export default player;
 
-export { player, analyser };
+export {
+  player,
+  //analyser,
+  init
+};

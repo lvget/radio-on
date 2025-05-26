@@ -32,17 +32,22 @@ function init(audioContext: AudioContext) {
     filters.push(filter);
   });
 
-  //filters.forEach((f) => {
-  //f.gain.value = 0;
-  //});
+  // filters.forEach((f) => {
+  //   f.gain.value = 0;
+  // });
 }
 
 function input(audioSource: any) {
+  //return audioSource;
   let lastNode = audioSource;
   filters.forEach((filter) => {
     lastNode.connect(filter);
     lastNode = filter;
+    filter.gain.value = 0
   });
+
+  // filters.forEach(f => f.gain.value = 0);
+
   return lastNode;
 }
 

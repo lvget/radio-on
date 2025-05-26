@@ -17,14 +17,19 @@
         </q-list>
       </q-btn-dropdown>
     </div>
-    <div class="row items-stretch no-wrap justify-between fit" v-show="enabled">
-      <div v-for="(f, i) in equalizer.frequencies" :key="'f-' + i" class="columns items-center no-wrap text-center">
-        <div class="accent">{{ filter[i] }}</div>
-        <q-slider v-model="filter[i]" :min="-12" :max="12" :step="1" class="col" vertical reverse color="accent"
-          @change="updateFilter(i)" />
-        <div class="">{{ f >= 1000 ? f / 1000 + 'k' : f }}</div>
+    <div class="position-relative q-pa-md" style="position: relative;">
+      <div class="row items-stretch no-wrap justify-between fit">
+        <div v-for="(f, i) in equalizer.frequencies" :key="'f-' + i" class="columns items-center no-wrap text-center">
+          <div class="accent">{{ filter[i] }}</div>
+          <q-slider v-model="filter[i]" :min="-12" :max="12" :step="1" class="col" vertical reverse color="accent"
+            @change="updateFilter(i)" />
+          <div class="">{{ f >= 1000 ? f / 1000 + 'k' : f }}</div>
+        </div>
+      </div>
+      <div v-if="!enabled" class="bg1 absolute-full" style="opacity: 0.7; z-index: 10; ">
       </div>
     </div>
+
   </div>
 </template>
 

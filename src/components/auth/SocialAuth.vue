@@ -83,6 +83,7 @@ const signInWithProvider = async (providerName) => {
       icon: 'check_circle'
     })
   } catch (error) {
+
     let errorMessage = 'Ошибка авторизации'
 
     // Обработка специфичных ошибок
