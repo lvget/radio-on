@@ -9,9 +9,9 @@ audio.crossOrigin = 'anonymous';
 let audioContext = new window.AudioContext();
 let analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;
-equalizer.init(audioContext);
 
 function init() {
+  equalizer.init(audioContext);
   let audioSource = audioContext.createMediaElementSource(audio);
   equalizer.input(audioSource).connect(audioContext.destination);
   //equalizer.input(audioSource).connect(analyser);
@@ -119,7 +119,7 @@ audio.addEventListener('waiting', (event) => {
 
 function saveState() {
   LocalStorage.set('player', player);
-  //LocalStorage.set('equalizer', equalizer.state);
+  LocalStorage.set('equalizer', equalizer.state);
 }
 
 function loadState() {
@@ -132,7 +132,7 @@ function loadState() {
     //}
   }
 
-  //equalizer.state = LocalStorage.getItem('equalizer') ?? equalizer.state;
+  equalizer.state = LocalStorage.getItem('equalizer');
 }
 
 window.addEventListener('beforeunload', () => {
@@ -146,5 +146,5 @@ loadState();
 export {
   player,
   //analyser,
-  init
+  init,
 };

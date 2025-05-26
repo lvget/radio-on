@@ -7,15 +7,19 @@
           {{ enabled ? 'On' : 'Off' }}
         </q-toggle>
       </div>
-      <q-btn-dropdown color="primary" :label="presetName" no-caps style="width: 200px;" outline align="left" split
+      <q-btn color="primary" :label="presetName" no-caps style="width: 200px;" outline align="left" split
         :disable="!enabled">
-        <q-list>
-          <q-item clickable v-close-popup v-for="(preset, i) in equalizer.presets" :key="i" @click="setPreset(preset)"
-            class="bg1 text1">
-            {{ preset.label }}
-          </q-item>
-        </q-list>
-      </q-btn-dropdown>
+        <q-menu fit v-close-popup>
+          <q-list dense>
+            <q-item clickable v-close-popup v-for="(preset, i) in equalizer.presets" :key="i" @click="setPreset(preset)"
+              class="bg1 text1">
+              {{ preset.label }}
+            </q-item>
+          </q-list>
+        </q-menu>
+      </q-btn>
+
+
     </div>
     <div class="position-relative q-pa-md" style="position: relative;">
       <div class="row items-stretch no-wrap justify-between fit">

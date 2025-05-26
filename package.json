@@ -2,7 +2,7 @@
   "name": "radio",
   "version": "0.0.1",
   "description": "Collection Online Radio stations",
-  "productName": "Online Radio",
+  "productName": "Radio On",
   "author": "lost <l.ostanin@gmail.com>",
   "private": true,
   "scripts": {

@@ -32,9 +32,7 @@ function init(audioContext: AudioContext) {
     filters.push(filter);
   });
 
-  // filters.forEach((f) => {
-  //   f.gain.value = 0;
-  // });
+  //equalizer.preset = _preset;
 }
 
 function input(audioSource: any) {
@@ -43,10 +41,10 @@ function input(audioSource: any) {
   filters.forEach((filter) => {
     lastNode.connect(filter);
     lastNode = filter;
-    filter.gain.value = 0
+    filter.gain.value = 0;
   });
 
-  // filters.forEach(f => f.gain.value = 0);
+  equalizer.preset = _preset;
 
   return lastNode;
 }
@@ -64,11 +62,7 @@ const equalizer = {
   set enabled(value: any) {
     _enabled = value;
     if (value) {
-      presets
-        .find((p) => p.label == value)
-        ?.gain.forEach((gain, i) => {
-          filters[i].gain.value = gain;
-        });
+      equalizer.preset = _preset;
     } else {
       filters.forEach((f) => {
         f.gain.value = 0;
@@ -80,12 +74,11 @@ const equalizer = {
     return _preset;
   },
   set preset(value: any) {
-    _preset = value;
     let p = presets.find((p) => p.label == value);
     if (p) {
       _preset = value;
-      p.gain.forEach((gain, i) => {
-        filters[i].gain.value = gain;
+      filters.forEach((f, i) => {
+        f.gain.value = p?.gain[i];
       });
     }
   },

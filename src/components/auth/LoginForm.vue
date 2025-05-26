@@ -33,13 +33,13 @@
 <script setup>
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
-// import {
-//   signInWithEmailAndPassword,
-//   createUserWithEmailAndPassword,
-//   signInWithPopup,
-//   sendPasswordResetEmail
-// } from 'firebase/auth'
-// import { auth, googleProvider } from '../firebase/config'
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  sendPasswordResetEmail
+} from 'firebase/auth'
+import { auth, googleProvider } from '../../firebase/config'
 
 const $q = useQuasar()
 
