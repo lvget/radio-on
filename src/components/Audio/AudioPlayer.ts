@@ -9,9 +9,9 @@ audio.crossOrigin = 'anonymous';
 let audioContext = new window.AudioContext();
 let analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;
+equalizer.init(audioContext);
 
 function init() {
-  equalizer.init(audioContext);
   let audioSource = audioContext.createMediaElementSource(audio);
   equalizer.input(audioSource).connect(audioContext.destination);
   //equalizer.input(audioSource).connect(analyser);
