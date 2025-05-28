@@ -1,25 +1,16 @@
 <template>
   <div class="auth-card q-pa-md bg1">
-    <!-- The surrounding HTML is left untouched by FirebaseUI.
-     Your app may use that space for branding, controls and other customizations.-->
-    <div>Welcome to Radio On</div>
+    <div>Welcome to Radio-On</div>
     <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import {
-  auth,
-  googleProvider,
-  facebookProvider,
-  twitterProvider,
-  githubProvider,
-  microsoftProvider
-} from 'src/firebase/config'
+import { auth } from 'src/firebase/config'
 import firebase from 'firebase/compat/app'
 import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 
 
 // Initialize the FirebaseUI Widget using Firebase.
@@ -43,19 +34,22 @@ var uiConfig = {
   signInFlow: 'popup',
   signInSuccessUrl: '/',
   signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    //googleProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    //firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
-
+    {
+      provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      clientId: '816839944804-dc7umuqs3k3epbdj1n2p6apdhriuq3tm.apps.googleusercontent.com'
+    },
+    {
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
+    },
+    {
+      provider: firebase.auth.GithubAuthProvider.PROVIDER_ID
+    }
   ],
+  //credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
   // Terms of service url.
-  tosUrl: '<your-tos-url>',
+  //tosUrl: '<your-tos-url>',
   // Privacy policy url.
-  privacyPolicyUrl: '<your-privacy-policy-url>'
+  //privacyPolicyUrl: '<your-privacy-policy-url>'
 };
 
 
