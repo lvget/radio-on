@@ -31,6 +31,7 @@ if ('mediaSession' in navigator) {
       metadata.artist = title;
     }
   );
+
   watch(
     () => streamData.image,
     (img) => {
@@ -38,13 +39,15 @@ if ('mediaSession' in navigator) {
       metadata.artwork[1].src = img;
     }
   );
+
   watch(
     () => AudioLibrary.currentStream,
     (stream) => {
+      console.log('AudioLibrary.currentStream', stream)
       metadata.title = stream.name;
-      if (AudioLibrary.currentStream.img) {
-        metadata.artwork[0].src = AudioLibrary.currentStream.img;
-        metadata.artwork[1].src = AudioLibrary.currentStream.img;
+      if (stream.img) {
+        metadata.artwork[0].src = stream.img;
+        metadata.artwork[1].src = stream.img;
       } else {
         metadata.artwork[0].src = defaultArtwork256;
         metadata.artwork[1].src = defaultArtwork512;

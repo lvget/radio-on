@@ -16,7 +16,8 @@
         </q-card-section>
 
         <q-card-actions align="right">
-          <q-btn flat no-caps @click="share" color="primary" icon="las la-share">Share</q-btn>
+          <q-btn dance flat no-caps @click="share" color="primary" icon="las la-share-alt-square" size="24px"
+            title="Поделиться ссылкой"></q-btn>
           <q-space />
           <q-btn flat no-caps @click="checkVersion">Проверить обновление</q-btn>
           <q-btn flat no-caps v-if="newVer" @click="update" color="accent">Update ({{ newVer.ver }})</q-btn>

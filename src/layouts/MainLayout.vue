@@ -5,6 +5,8 @@
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
         <q-toolbar-title>{{ library.currentCollection.name }}</q-toolbar-title>
         <q-space />
+        <q-btn flat dense icon="las la-list-ul" />
+        <q-btn flat dense icon="las la-icons" />
         <q-btn class="menu-btn" flat dense icon="las la-ellipsis-v" round>
           <q-menu>
             <q-list>
@@ -61,7 +63,6 @@ import { setCssVar } from 'quasar'
 import { HSL } from 'src/components/HSL';
 import { LocalStorage, useQuasar } from 'quasar';
 
-
 const theme = ref('#000');
 const bg1 = ref('#000');
 const bg2 = ref('#000');
@@ -73,7 +74,7 @@ const text2 = ref('#fff');
 const textActive = ref('#fff');
 const textAccent = ref('#fff');
 
-chgColor(LocalStorage.getItem('theme') || '#000');
+chgColor(LocalStorage.getItem('theme') || '#131a1f');
 
 defineOptions({
   name: 'MainLayout',
@@ -106,6 +107,11 @@ function chgColor(color: string) {
 
   setCssVar('accent', bgAccent.value)
   setCssVar('primary', textActive.value)
+
+  // Для текущей сессии
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', color);
+  // Для iOS
+  // document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').content = color;
 
   LocalStorage.setItem('theme', theme.value);
 }

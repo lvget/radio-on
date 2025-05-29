@@ -23,7 +23,7 @@
     </q-list>
     <template v-for="(p, i) in AudioLibrary.playlists" :key="'pl' + i">
       <q-separator />
-      <q-expansion-item :label="p.name" class="bg1 text1">
+      <q-expansion-item :label="p.name" class="bg1 text1" default-opened>
         <template v-slot:header>
           <q-item-section avatar>
             <q-avatar class="bg2 text2">
