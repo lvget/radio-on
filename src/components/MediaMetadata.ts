@@ -7,7 +7,7 @@ if ('mediaSession' in navigator) {
   const defaultArtwork256 = 'https://radio-on.web.app/icons/icon-256x256.png';
   const defaultArtwork512 = 'https://radio-on.web.app/icons/icon-256x256.png';
 
-  let metadata = new MediaMetadata({
+  let metadata = {
     title: 'radio-on.web.app',
     artist: '',
     album: '',
@@ -23,39 +23,31 @@ if ('mediaSession' in navigator) {
         type: 'image/png',
       },
     ],
-  });
+  };
 
   watch(
-    () => streamData.title,
-    (title) => {
-      metadata.artist = title;
-    }
-  );
-
-  watch(
-    () => streamData.image,
-    (img) => {
-      metadata.artwork[0].src = img;
-      metadata.artwork[1].src = img;
-    }
+    () => streamData,
+    (data) => {
+      metadata.artist = data.title;
+      metadata.artwork[0].src = data.image || defaultArtwork256;
+      metadata.artwork[1].src = data.image || defaultArtwork512;
+      navigator.mediaSession.metadata = new MediaMetadata(metadata);
+    },
+    { deep: true }
   );
 
   watch(
     () => AudioLibrary.currentStream,
     (stream) => {
-      console.log('AudioLibrary.currentStream', stream)
+      //console.log('AudioLibrary.currentStream', stream);
       metadata.title = stream.name;
-      if (stream.img) {
-        metadata.artwork[0].src = stream.img;
-        metadata.artwork[1].src = stream.img;
-      } else {
-        metadata.artwork[0].src = defaultArtwork256;
-        metadata.artwork[1].src = defaultArtwork512;
-      }
+      metadata.artwork[0].src = stream.img || defaultArtwork256;
+      metadata.artwork[1].src = stream.img || defaultArtwork512;
+      navigator.mediaSession.metadata = new MediaMetadata(metadata);
     }
   );
 
-  navigator.mediaSession.metadata = metadata;
+  navigator.mediaSession.metadata = new MediaMetadata(metadata); //metadata;
   navigator.mediaSession.setActionHandler('play', () => {
     player.play();
   });

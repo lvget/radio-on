@@ -314,7 +314,7 @@
         },
         {
           "name": "Classic Hits 181",
-          "src": "https://listen.livestreamingservice.com:8132",
+          "src": "https://listen.181fm.com/181-greatoldies_128k.mp3",
           "desc": "",
           "img": "https://www.181.fm/images/station-thumbnails/181-greatoldies_300.webp"
         },
@@ -400,7 +400,7 @@
         },
         {
           "name": "Rock FM 70`s",
-          "src": "https://jfm1.hostingradio.ru:14536/rock80.mp3"
+          "src": "https://jfm1.hostingradio.ru:14536/rock70.mp3"
         }
       ],
       "icon": "https://www.rockfm.ru/favicons/favicon-32x32.png"
