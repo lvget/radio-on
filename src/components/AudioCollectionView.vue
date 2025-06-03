@@ -23,7 +23,7 @@
 </template>
 </div> -->
 
-      <template v-for="(c) in collections" :key="c.name">
+      <template v-for="(c, cid) in collections" :key="c.name">
         <q-expansion-item dense v-if="settings.searchText.length == 0 || c.streams.length > 0" class="q-mb-sm"
           default-opened>
           <!-- <q-btn dense class="bg-liter q-mt-md" size="0.8em" @click="c.show = !c.show">{{ c.name }}
@@ -31,7 +31,6 @@
             {{ c.streams.length }}</q-badge>
         </q-btn> -->
           <template v-slot:header>
-
             <q-item-section avatar>
               <q-btn dense flat size="0.8em" class="bg-liter" @click="c.show = !c.show">{{ c.name }}
                 <!-- <q-badge rounded class="bg1 q-mx-sm" :color="c.name">
@@ -45,7 +44,7 @@
             </q-item-section>
           </template>
 
-          <div v-if="settings.ui.view == 'list'">
+          <div v-if="settings.ui.view == 'list'" v-intersection="onIntersection" :data-id="cid">
             <template v-for="(s, i) in c.streams" :key="s.name">
               <div class="row items-center q-pb-xs q-pr-sm q-ma-xs q-gutter-xs cursor-pointer text2"
                 :class="[s.src == AudioLibrary.currentStream.src ? 'active' : '']" @click="play(s)">
@@ -69,13 +68,12 @@
                 </div>
                 <q-btn flat round dense icon="las la-ellipsis-v" @click.stop="onContextMenu($event, s);" />
               </div>
-              <q-separator />
             </template>
           </div>
 
-          <div v-if="settings.ui.view == 'tile'" style="max-width: 845px; margin: 0 auto;" class="row items-start">
+          <div v-if="settings.ui.view == 'tile'" style="max-width: 845px; margin: 0 auto;" class="row items-start"
+            v-intersection="onIntersection" :data-id="cid">
             <template v-for="(s, i) in c.streams" :key="s.name">
-
               <div class="row items-center justify-center stream-card text2">
                 <div class="relative-position stream-cover row items-center justify-center text2 bg1"
                   :class="[s.src == AudioLibrary.currentStream.src ? 'active' : '']" @click="play(s)" :style="img(s)"
@@ -150,6 +148,7 @@ import AudioLibrary, { AudioStream, AudioCollection } from './AudioLibrary';
 import { player, PlayerStatus } from './Audio/index';
 import { ref, watch, reactive, computed } from 'vue';
 import settings from 'src/stores/Settings';
+import library from 'components/AudioLibrary';
 
 const menu = reactive({
   show: false,
@@ -170,7 +169,6 @@ const collections = computed(() => {
 
     p.collections.forEach(c => {
       let streams = text.length == 0 ? c.streams : c.streams.filter(s => s.name.toLocaleLowerCase().indexOf(text) >= 0)
-      debugger
       res.push({
         name: c.name,
         streams//: c.streams.filter(s => s.name.toLocaleLowerCase().indexOf(text) >= 0)
@@ -181,9 +179,9 @@ const collections = computed(() => {
 
 })
 
+let collVisible: number[] = []
+
 watch(() => AudioLibrary.currentCollection, initFavorites)
-
-
 
 function initFavorites() {
   favorites.value = AudioLibrary.currentCollection.streams.map(s => AudioLibrary.isFavorite(s));
@@ -192,6 +190,7 @@ function initFavorites() {
 function img(s: AudioStream) {
   return `background-image: url('${s.img ? s.img : '/img/dynamic.png'}')`
 }
+
 function toggleFavorite(s: AudioStream) {
   AudioLibrary.toggleFavorite(s);
   initFavorites();
@@ -204,13 +203,31 @@ function play(s: AudioStream) {
     player.toggle();
   }
 }
+
 function onContextMenu(e: Event, s: AudioStream) {
-  console.log(e)
   menu.show = true
   menu.target = e.currentTarget
   menu.stream = s
-
 }
+
+function onIntersection(entry: IntersectionObserverEntry) {
+  let idx = Number(entry.target.dataset.id)
+
+  if (entry.isIntersecting === true) {
+    collVisible.push(idx)
+  }
+  else {
+    collVisible = collVisible.filter(i => i != idx)
+  }
+  idx = Math.min(...collVisible)
+  let collection = collections.value[idx]
+  if (collection) {
+    library.currentCollection = collection
+  }
+
+  return true;
+}
+
 initFavorites();
 </script>
 
@@ -243,10 +260,6 @@ initFavorites();
   overflow: hidden;
   background-size: cover;
 }
-
-/* .stream-card:hover {
-  background-image: none !important;
-} */
 
 .stream-name {
   text-align: center;
