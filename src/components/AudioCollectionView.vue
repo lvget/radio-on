@@ -210,7 +210,7 @@ function onContextMenu(e: Event, s: AudioStream) {
   menu.stream = s
 }
 
-function onIntersection(entry: IntersectionObserverEntry) {
+function onIntersection(entry: any) {
   let idx = Number(entry.target.dataset.id)
 
   if (entry.isIntersecting === true) {

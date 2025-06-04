@@ -17,8 +17,7 @@ export default boot(async ({ app, router }) => {
   watch(
     () => AudioLibrary.currentStream,
     (v) => {
-      console.log(AudioLibrary.currentStream);
-      document.title = AudioLibrary.currentStream.name;
+      document.title = v.name;
     }
   );
 });

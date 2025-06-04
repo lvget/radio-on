@@ -58,25 +58,25 @@
         {
           "name": "Авторадио. Зарубежный рок",
           "src": "https://srv12.gpmradio.ru:8443/stream/pro/aac/64/160",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/160/channel/?dataFormat=json",
           "img": "https://cdn1.101.ru/proxy/vardata/modules/channel/image/171607ce7dcfee023631c3fc5ac256ab.jpg"
         },
         {
           "name": "Авторадио. Русский рок",
           "src": "https://srv12.gpmradio.ru:8443/stream/pro/aac/64/42",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/42/channel/?dataFormat=json",
           "img": "https://cdn0.101.ru/proxy/vardata/modules/channel/image/93980f2060cd4c16716fdb65689a8d85.jpg"
         },
         {
           "name": "Rock",
-          "src": "https://srv12.gpmradio.ru:8443/stream/pro/aac/64/42",
-          "desc": "",
+          "src": "https://srv12.gpmradio.ru:8443/stream/pro/aac/64/69",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/69/channel/?dataFormat=json",
           "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/image/e476f161efbdf036ab224ce63b2eb745.png"
         },
         {
           "name": "NRJ Alternative",
           "src": "https://srv12.gpmradio.ru:8443/stream/pro/aac/64/176",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/176/channel/?dataFormat=json",
           "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/image/d9c085436a03484b1984e1eedc3d6c95.jpg"
         },
         {
@@ -112,7 +112,7 @@
         {
           "name": "Metal",
           "src": "https://srv12.gpmradio.ru:8443/stream/pro/aac/64/211",
-          "desc": "https://101.ru/api/channel/getTrackOnAir/183/channel/?dataFormat=json",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/211/channel/?dataFormat=json",
           "img": "https://cdn1.101.ru/proxy/vardata/modules/channel/image/cbaa20f3e905657b4c8fb3f42e460492.png"
         },
         {
@@ -136,13 +136,13 @@
         {
           "name": "Pink Floyd",
           "src": "https://srv12.gpmradio.ru:8443/stream/pro/aac/64/53",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/53/channel/?dataFormat=json",
           "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/image/2eb66d9f61c5fc72eadc4cdc8f5a2bbe.png?w=300&h=300&pos=center&q=100&t=1565608172"
         },
         {
           "name": "Король и Шут",
           "src": "https://srv11.gpmradio.ru:8443/stream/pro/aac/64/191",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/191/channel/?dataFormat=json",
           "img": "https://cdn0.101.ru/proxy/vardata/modules/channel/image/d0a7aa8d531fc7f0fe49ba70b4f6400b.png?w=300&h=300&pos=center&q=100&t=1565608962"
         },
         {
@@ -166,62 +166,74 @@
         {
           "name": "Rammstein on Air",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/538652",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/538652/personal/?dataFormat=json",
           "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/dynamics/personal/53/538652.png?w=300&h=300&pos=center&q=100&t=1652436924"
         },
         {
           "name": "КАК БЫ РАДИО",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/449486",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/449486/personal/?dataFormat=json",
           "img": "https://cdn0.101.ru/proxy/vardata/modules/channel/dynamics/personal/44/449486.png"
         },
         {
           "name": "Неслучайное Радио (РОК)",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/499389",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/499389/personal/?dataFormat=json",
           "img": "https://cdn0.101.ru/proxy/vardata/modules/channel/dynamics/personal/49/499389.jpeg"
         },
         {
           "name": "Музыка для магазина",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/519933",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/519933/personal/?dataFormat=json",
           "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/dynamics/personal/51/519933.png"
         },
         {
           "name": "Breaking Bad",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/718706",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/718706/personal/?dataFormat=json",
           "img": "https://cdn0.101.ru/proxy/vardata/modules/channel/dynamics/personal/71/718706.png"
         },
         {
           "name": "Радио Applecrafts",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/779541",
-          "desc": "",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/779541/personal/?dataFormat=json",
           "img": "https://cdn0.101.ru/proxy/vardata/modules/channel/dynamics/personal/77/779541.png"
         },
         {
           "name": "Rock music",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/195865",
-          "desc": "https://101.ru/api/channel/getTrackOnAir/195865/channel/?dataFormat=json",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/195865/personal/?dataFormat=json",
           "img": "https://cdn1.101.ru/proxy/vardata/modules/channel/dynamics/personal/19/195865.jpg"
         },
         {
           "name": "Рок-баллады",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/719424",
-          "desc": "https://101.ru/api/channel/getTrackOnAir/719424/channel/?dataFormat=json",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/719424/personal/?dataFormat=json",
           "img": "https://cdn1.101.ru/proxy/vardata/modules/channel/dynamics/personal/85/719424.jpg"
         },
         {
           "name": "РУССКИЙ СТОЯК",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/852605",
-          "desc": "https://101.ru/api/channel/getTrackOnAir/852605/channel/?dataFormat=json",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/852605/personal/?dataFormat=json",
           "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/dynamics/personal/85/852605.png"
         },
         {
           "name": "MetallicA",
           "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/711157",
-          "desc": "https://101.ru/api/channel/getTrackOnAir/711157/channel/?dataFormat=json",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/711157/personal/?dataFormat=json",
           "img": "https://cdn1.101.ru/proxy/vardata/modules/musicdb/files/201406/8143bca6e04ab213eeef9bd8b3a70bd1.jpg"
+        },
+        {
+          "name": "оттапырики.фм",
+          "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/955788",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/955788/personal/?dataFormat=json",
+          "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/dynamics/personal/95/955788.jpg"
+        },
+        {
+          "name": "Jean Michel Jarre",
+          "src": "https://srv02.gpmradio.ru:8443/stream/personal/aacp/64/575587",
+          "desc": "https://101.ru/api/channel/getTrackOnAir/575587/personal/?dataFormat=json",
+          "img": "https://cdn0.101.ru/proxy/vardata/modules/musicdb/files/201811/48/39aa1d6abfd43b50a7a85362ba17ad4e.jpeg"
         }
       ],
       "icon": "https://101.ru/design/images/new/logo.svg"
