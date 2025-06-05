@@ -46,9 +46,15 @@
         },
         {
           "name": "Classic Rock Florida",
-          "src": "https://vip2.fastcast4u.com/proxy/classicrockdoug?mp=/1",
+          "src": "https://vip2.fastcast4u.com/proxy/classicrockdoug",
           "desc": "",
-          "img": "https://img1.wsimg.com/isteam/ip/a03fc5ad-e0a9-4726-80d4-3fe65da6d855/Classic%20Rock%20Florida%20B.png/:/rs=w:118,h:118,cg:true,m/cr=w:118,h:118/qt=q:95"
+          "img": "https://img1.wsimg.com/isteam/ip/a03fc5ad-e0a9-4726-80d4-3fe65da6d855/Classic%20Rock%20Florida%20B.png"
+        },
+        {
+          "name": "Радио Эрмитаж",
+          "src": " https://hermitage.hostingradio.ru/hermitage128.mp3",
+          "desc": "",
+          "img": "https://hermitage.fm/images/logo.svg"
         }
       ]
     },
