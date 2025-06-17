@@ -3,7 +3,7 @@
     <q-header reveal class="bg1 text1">
       <q-toolbar>
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title>{{ library.currentCollection.name }}</q-toolbar-title>
+        <q-toolbar-title>{{ library.currentPlaylist.name }}</q-toolbar-title>
         <q-space v-if="!search" />
         <q-input dense rounded outlined v-if="search" v-model="settings.searchText" input-class="text2" dark autofocus
           debounce="300" placeholder="Поиск">

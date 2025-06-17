@@ -4,8 +4,8 @@ import streamData from './StreamData';
 import AudioLibrary from './AudioLibrary';
 
 if ('mediaSession' in navigator) {
-  const defaultArtwork256 = 'https://radio-on.web.app/icons/icon-256x256.png';
-  const defaultArtwork512 = 'https://radio-on.web.app/icons/icon-256x256.png';
+  const defaultArtwork256 = 'https://radio-on.web.app/img/dynamic.png';
+  const defaultArtwork512 = 'https://radio-on.web.app/img/dynamic.png';
 
   let metadata = {
     title: 'radio-on.web.app',

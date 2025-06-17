@@ -3,7 +3,30 @@
     <q-header reveal class="bg1 text1">
       <q-toolbar>
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title>{{ library.currentCollection.name }}</q-toolbar-title>
+        <q-toolbar-title>{{ AudioLibrary.currentPlaylist.name }}
+          <q-menu>
+            <q-list dense>
+              <q-item clickable v-close-popup dense>
+                <q-item-section avatar>
+                  <q-avatar>
+                    <q-icon :name="AudioLibrary.getIcon(AudioLibrary.currentPlaylist)" />
+                  </q-avatar>
+                </q-item-section>
+                <q-item-section>{{ AudioLibrary.currentPlaylist.name }}</q-item-section>
+
+              </q-item>
+              <q-item v-for="p in AudioLibrary.currentPlaylist.playlists" clickable v-close-popup :key="p.name">
+                <q-item-section avatar>
+                  <q-avatar>
+                    <q-icon :name="AudioLibrary.getIcon(p)" />
+                  </q-avatar>
+                </q-item-section>
+                <q-item-section>{{ p.name }}</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+
+        </q-toolbar-title>
         <q-space v-if="!search" />
         <q-input dense rounded outlined v-if="search" v-model="settings.searchText" input-class="text2" dark autofocus
           debounce="300" placeholder="Поиск">
@@ -24,29 +47,19 @@
         <q-btn class="menu-btn" flat dense icon="las la-ellipsis-v" round>
           <q-menu>
             <q-list>
-              <q-item clickable to="/login" v-close-popup>
+              <q-item clickable to="/settings/login" v-close-popup>
                 <q-item-section avatar><q-icon name="las la-user" /></q-item-section>
                 <q-item-section>Вход</q-item-section>
               </q-item>
-              <q-separator />
-              <q-item clickable to="/about" v-close-popup>
-                <q-item-section avatar><q-icon name="las la-cog" /></q-item-section>
+
+              <q-item clickable to="/settings/about" v-close-popup>
+                <q-item-section avatar><q-icon name="las la-info" /></q-item-section>
                 <q-item-section>About</q-item-section>
               </q-item>
-              <q-separator />
-              <q-item clickable to="/settings" v-close-popup>
+
+              <q-item clickable to="/settings/ui" v-close-popup>
                 <q-item-section avatar><q-icon name="las la-cog" /></q-item-section>
                 <q-item-section>Настройки</q-item-section>
-              </q-item>
-              <q-item clickable>
-                <q-item-section avatar><q-icon name="las la-palette" /></q-item-section>
-                <q-item-section>Тема</q-item-section>
-                <q-menu v-close-popup anchor="top right">
-                  <div>
-                    <q-btn flat round icon="las la-palette" />
-                  </div>
-                  <q-color v-model="settings.theme" no-header no-footer style="max-width: 350px" />
-                </q-menu>
               </q-item>
             </q-list>
           </q-menu>
@@ -59,11 +72,14 @@
     </q-drawer>
 
     <q-footer class="bg1 text1">
+      <q-separator class="bg2" />
       <AudioPlayerUI />
     </q-footer>
 
     <q-page-container class="bg2 text2">
-      <router-view />
+      <q-page padding>
+        <router-view />
+      </q-page>
     </q-page-container>
   </q-layout>
 </template>
@@ -72,7 +88,7 @@
 import { ref } from 'vue';
 import AudioPlayerUI from 'components/AudioPlayerUI.vue';
 import PlaylistsNavigation from 'components/PlaylistsNavigation.vue';
-import library from 'components/AudioLibrary';
+import AudioLibrary from 'components/AudioLibrary';
 import settings from 'src/stores/Settings';
 
 defineOptions({

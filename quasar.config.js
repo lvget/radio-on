@@ -9,6 +9,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require('quasar/wrappers');
+//const jsx = require('@vitejs/plugin-vue-jsx');
 const version_increment = require('./version-increment');
 
 module.exports = configure(function (/* ctx */) {
@@ -77,6 +78,7 @@ module.exports = configure(function (/* ctx */) {
           },
           { server: false },
         ],
+        //jsx(),
       ],
       beforeBuild: function () {
         version_increment('public/version.json');

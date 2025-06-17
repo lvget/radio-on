@@ -1,30 +1,57 @@
 import { reactive, watch } from 'vue';
-import library, { AudioStream } from './AudioLibrary';
-import startRead from './StreamDataReaderJson';
+import AudioLibrary, { AudioStream } from './AudioLibrary';
+import startRead, { TrackStat } from './StreamDataReaderJson';
+import { player, PlayerStatus } from './Audio';
 
-const streamData = reactive({
-  image: '',
+const streamData = reactive<TrackStat>({
   title: '',
+  image: AudioLibrary.currentStream.img || '',
+  album: null,
+  file: null,
+  stat: null,
 });
 
-watch(() => library.currentStream, read);
-
+watch(() => AudioLibrary.currentStream, read);
+watch(
+  () => player.status,
+  (s) => {
+    if (s === PlayerStatus.playing) {
+      read(AudioLibrary.currentStream);
+    } else if (s === PlayerStatus.stoping) {
+      //read(null);
+    }
+  }
+);
 function read(stream: AudioStream) {
-  streamData.title = '';
-  streamData.image = stream.img || '';
+  // streamData.title = '';
+  // streamData.image = stream.img || '';
+  // streamData.album = null;
+  // streamData.file = null;
+  // streamData.album = null;
+  // streamData.stat = null;
+
   startRead(stream.desc || stream.src, onStats);
 }
 
-const onStats = (stats: any) => {
-  //  console.log('onStats', stats);
+const onStats = (stat: any) => {
+  // Object.apply( stat, streamData);
 
-  if (stats.title) {
-    streamData.title = stats.title;
-  }
+  streamData.title = stat.title || '';
+  streamData.image = stat.image || AudioLibrary.currentStream.img || '';
+  streamData.album = stat.album;
+  streamData.file = stat.file;
+  streamData.stat = stat.stat;
 
-  if (stats.image) {
-    streamData.image = stats.image;
-  }
+  //console.log('onStats', streamData);
+  // if (stat.title) {
+  //   streamData.title = stat.title;
+  // }
+
+  // if (stat.image) {
+  //   streamData.image = stat.image;
+  // }
 };
+
+read(AudioLibrary.currentStream);
 
 export default streamData;

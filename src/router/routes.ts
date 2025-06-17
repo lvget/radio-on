@@ -5,26 +5,47 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
       {
-        path: '/collection/:playlist/:name?',
-        component: () => import('pages/IndexPage.vue'),
+        path: '',
+        component: () => import('src/components/PlaylistView.vue'),
       },
       {
-        path: '/visualisation',
+        path: '/playlist/:playlist/',
+        component: () => import('src/components/PlaylistView.vue'),
+      },
+      {
+        path: '/stream',
+        component: () => import('src/components/StreamView.vue'),
+      },
+      {
+        path: '/visualization',
         component: () => import('pages/VisualisationPage.vue'),
       },
+    ],
+  },
+  {
+    path: '/settings',
+    component: () => import('layouts/SettingsLayout.vue'),
+    children: [
       {
-        path: '/settings',
-        component: () => import('pages/SettingsPage.vue'),
+        path: '',
+        component: () => import('pages/AboutPage.vue'),
       },
       {
-        path: '/login',
+        path: 'about',
+        component: () => import('pages/AboutPage.vue'),
+      },
+      {
+        path: 'login',
         component: () => import('pages/LoginPage.vue'),
       },
       {
-        path: '/about',
-        component: () => import('pages/AboutPage.vue'),
+        path: 'sound',
+        component: () => import('pages/SoundSettingPage.vue'),
+      },
+      {
+        path: 'ui',
+        component: () => import('pages/UiSettingPage.vue'),
       },
     ],
   },

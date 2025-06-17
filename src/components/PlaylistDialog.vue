@@ -37,7 +37,8 @@ const props = defineProps<{
 const _new = reactive<Playlist>({
   name: 'Playlist',
   icon: 'las la-headphones',
-  collections: [],
+  streams: [],
+  //collections: [],
 })
 
 Object.assign(_new, props.playlist);

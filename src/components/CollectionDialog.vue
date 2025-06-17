@@ -25,14 +25,14 @@
 
 <script setup lang="ts">
 import { useDialogPluginComponent } from 'quasar'
-import { AudioCollection } from './AudioLibrary';
+import { Playlist } from './AudioLibrary';
 import { reactive } from 'vue';
 
 const props = defineProps<{
-  collection?: AudioCollection
+  collection?: Playlist
 }>();
 
-const _new = reactive<AudioCollection>({
+const _new = reactive<Playlist>({
   name: 'Audio Collection',
   streams: [],
   icon: 'las la-music'
@@ -46,7 +46,7 @@ function onOKClick() {
   onDialogOK(_new)
 }
 
-function icon(collection: AudioCollection) {
+function icon(collection: Playlist) {
   if (collection.icon?.startsWith('http'))
     return 'img:' + collection.icon;
   return collection.icon;

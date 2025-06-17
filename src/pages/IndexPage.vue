@@ -1,11 +1,11 @@
 <template>
   <q-page padding>
-    <AudioCollectionView />
+    <PlaylistView />
   </q-page>
 </template>
 
 <script setup lang="ts">
-import AudioCollectionView from 'src/components/AudioCollectionView.vue';
+import PlaylistView from 'src/components/PlaylistView.vue';
 
 defineOptions({
   name: 'IndexPage',

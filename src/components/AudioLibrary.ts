@@ -13,22 +13,22 @@ export type AudioStream = {
   img?: string;
 };
 
-export type AudioCollection = {
-  name: string;
-  streams: AudioStream[];
-  icon?: string;
-};
-
 export type Playlist = {
   name: string;
   icon: string;
-  collections: AudioCollection[];
+  streams: AudioStream[];
+  playlists?: Playlist[];
+};
+
+export type TopPlaylist = Playlist & {
+  src: string;
 };
 
 let EmptyPlaylist: Playlist = {
   name: '',
   icon: '',
-  collections: [],
+  streams: [],
+  playlists: [],
 };
 
 const EmptyStream: AudioStream = {
@@ -38,31 +38,22 @@ const EmptyStream: AudioStream = {
   img: '',
 };
 
-const EmptyCollection: AudioCollection = {
-  name: '',
-  streams: [],
-};
+// const EmptyCollection: AudioCollection = {
+//   name: '',
+//   streams: [],
+// };
 
 const favorite: Playlist = {
   name: 'Избранное',
-  icon: 'mdi-star',
-  collections: [
-    {
-      name: 'Избранное',
-      streams: [],
-    },
-  ],
+  icon: 'las la-star',
+  streams: [],
+  playlists: [],
 };
 
 const stor = reactive({
   favorite,
   playlists: [] as Playlist[],
-  // active: {
-  //   plylist: EmptyPlaylist,
-  //   collection: EmptyCollection,
-  //   stream: EmptyStream,
-  // },
-  currentCollection: EmptyCollection,
+  currentPlaylist: EmptyPlaylist,
   currentStream: EmptyStream,
   play() {
     player.play(this.currentStream.src);
@@ -79,32 +70,30 @@ const stor = reactive({
     }
   },
   nextStream() {
-    let idx = this.currentCollection.streams.findIndex(
+    let idx = this.currentPlaylist.streams.findIndex(
       (item) => item.name == this.currentStream.name
     );
     idx++;
-    if (idx >= this.currentCollection.streams.length) idx = 0;
-    this.selectStream(this.currentCollection.streams[idx]); // % this.currentCollection.streams.length]
+    if (idx >= this.currentPlaylist.streams.length) idx = 0;
+    this.selectStream(this.currentPlaylist.streams[idx]); // % this.currentPlaylist.streams.length]
   },
   prevStream() {
-    let idx = this.currentCollection.streams.findIndex(
+    let idx = this.currentPlaylist.streams.findIndex(
       (item) => item.name == this.currentStream.name
     );
     idx--;
-    if (idx < 0) idx = this.currentCollection.streams.length - 1;
-    this.selectStream(this.currentCollection.streams[idx]);
+    if (idx < 0) idx = this.currentPlaylist.streams.length - 1;
+    this.selectStream(this.currentPlaylist.streams[idx]);
   },
   random() {
-    const idx = Math.floor(
-      Math.random() * this.currentCollection.streams.length
-    );
-    this.currentStream = this.currentCollection.streams[idx];
+    const idx = Math.floor(Math.random() * this.currentPlaylist.streams.length);
+    this.currentStream = this.currentPlaylist.streams[idx];
     this.play();
   },
 
-  selectCollection(col: AudioCollection) {
-    this.currentCollection = col;
-    LocalStorage.setItem('currentCollection', this.currentCollection.name);
+  selectCollection(col: Playlist) {
+    this.currentPlaylist = col;
+    LocalStorage.setItem('currentPlaylist', this.currentPlaylist.name);
   },
   selectStream(stream: AudioStream) {
     if (this.currentStream != stream) {
@@ -175,21 +164,23 @@ const stor = reactive({
     this.editCollection(playlist);
   },
 
-  editCollection(playlist: Playlist, collection?: AudioCollection) {
+  editCollection(parent: Playlist, playlist?: Playlist) {
     Dialog.create({
       component: CollectionDialog,
-      componentProps: { collection },
-    }).onOk((_collection: AudioCollection) => {
-      if (collection) {
-        Object.assign(collection, _collection);
+      componentProps: { collection: playlist },
+    }).onOk((_playlist: Playlist) => {
+      if (playlist) {
+        Object.assign(playlist, _playlist);
       } else {
-        playlist.collections.push(_collection);
-        this.selectCollection(_collection);
+        if (!parent.playlists) parent.playlists = [];
+        parent.playlists.push(_playlist);
+        this.selectCollection(_playlist);
       }
     });
   },
-  removeCollection(playlist: Playlist, collection: AudioCollection) {
-    playlist.collections = playlist.collections.filter((x) => x != collection);
+  removeCollection(parent: Playlist, playlist: Playlist) {
+    if (parent.playlists)
+      parent.playlists = parent.playlists.filter((x) => x != playlist);
   },
 
   addStream() {
@@ -203,26 +194,22 @@ const stor = reactive({
       if (stream) {
         Object.assign(stream, _stream);
       } else {
-        this.currentCollection.streams.push(_stream);
+        this.currentPlaylist.streams.push(_stream);
         this.selectStream(_stream);
       }
     });
   },
   removeStream(stream: AudioStream) {
-    this.currentCollection.streams = this.currentCollection.streams.filter(
+    this.currentPlaylist.streams = this.currentPlaylist.streams.filter(
       (x) => x != stream
     );
   },
   isFavorite(s: AudioStream) {
-    return (
-      this.favorite.collections[0].streams.findIndex(
-        (item) => item.name == s.name
-      ) >= 0
-    );
+    return this.favorite.streams.findIndex((item) => item.name == s.name) >= 0;
   },
   toggleFavorite(s: AudioStream) {
     let find = false;
-    let streams = this.favorite.collections[0].streams;
+    let streams = this.favorite.streams;
     for (let i = 0; i < streams.length; i++) {
       if (streams[i].name == s.name) {
         streams.splice(i, 1);
@@ -231,18 +218,19 @@ const stor = reactive({
       }
     }
     if (!find) streams.push(s);
-    LocalStorage.setItem('favorite', streams);
+    LocalStorage.setItem('favorite', this.favorite);
   },
   loadPlaylist(url: string) {
     fetch(url).then((res) => {
       if (res.ok) {
         res.json().then((playlist: Playlist) => {
           this.playlists.push(playlist);
-          let currentCollection =
-            LocalStorage.getItem('currentCollection') || '';
-          this.currentCollection =
-            playlist.collections.find((x) => x.name == currentCollection) ||
-            EmptyCollection;
+          this.selectCollection(playlist);
+
+          //   LocalStorage.getItem('currentPlaylist') || '';
+          // this.currentPlaylist =
+          //   playlist.playlists.find((x) => x.name == currentPlaylist) ||
+          //   EmptyCollection;
         });
       }
     });
@@ -284,10 +272,20 @@ const stor = reactive({
       reader.readAsText(file);
     }
   },
+  getIcon(playlist: Playlist) {
+    if (playlist.icon?.startsWith('http')) {
+      return `img:${playlist.icon}`;
+    } else {
+      return playlist.icon || 'las la-music';
+    }
+  },
 });
 
+stor.favorite = LocalStorage.getItem('favorite') || favorite;
+stor.playlists.push(stor.favorite);
+
 stor.loadPlaylist('/rock.json');
-stor.favorite.collections[0].streams = LocalStorage.getItem('favorite') || [];
+
 stor.currentStream = LocalStorage.getItem('currentStream') || EmptyStream;
 
 export default stor;

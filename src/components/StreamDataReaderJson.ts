@@ -1,5 +1,16 @@
 import IcecastMetadataStats from 'icecast-metadata-stats';
 
+export type TrackStat = {
+  title: string;
+  image: string | null;
+  album: {
+    albumTitle: string;
+    year: string;
+  } | null;
+  file: string | null;
+  stat: any | null;
+};
+
 export class StreamDataReaderJson {
   url: string;
   _timer = 0;
@@ -14,8 +25,8 @@ export class StreamDataReaderJson {
   start(url?: string) {
     if (url) this.url = url;
 
-    if (this._timer) clearTimeout(this._timer);
-    this._timer = window.setTimeout(() => {
+    if (this._timer) clearInterval(this._timer);
+    this._timer = window.setInterval(() => {
       this.read();
     }, 30000);
 
@@ -23,7 +34,7 @@ export class StreamDataReaderJson {
   }
 
   stop() {
-    clearTimeout(this._timer);
+    clearInterval(this._timer);
     this._timer = 0;
   }
 
@@ -34,16 +45,14 @@ export class StreamDataReaderJson {
           //console.log(data);
 
           if (data.errorCode == 0) {
+            console.log(data.result);
             let d = data.result.short;
             let stat = {
               title: d.title,
-              image: d.cover.cover100,
-              album: {
-                title: d.album.albumTitle,
-                year: d.album.year,
-              },
-              file: d.audioFile,
-              stats: data.result.stats,
+              image: d.cover.cover250,
+              album: d.album,
+              file: d.audiofile,
+              stat: data.result.stat,
             };
             this.onStat(stat);
           }
@@ -53,37 +62,54 @@ export class StreamDataReaderJson {
   }
 }
 
-export type TrackStat = {
-  title: string;
-  image?: string;
-  album?: {
-    title: string;
-    year: string;
-  };
-  file?: string;
-  stats?: any;
-};
-
-let callback: any;
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+let callback: (stat: TrackStat) => void = () => {};
 let statsListener: any = null;
 
 function _onStats(data: any) {
-  let title = '';
+  console.log(data);
+
+  let stat: TrackStat = {
+    title: '',
+    image: null,
+    album: null,
+    file: null,
+    stat: null,
+  };
+
   if (data.icy) {
-    title = data.icy.StreamTitle;
+    stat.title = data.icy.StreamTitle;
+    //statsListener.sources = ['icy'];
   } else if (data.ogg) {
-    title = data.ogg.ARTIST + ' - ' + data.ogg.ALBUM;
+    stat.title = data.ogg.ARTIST + ' - ' + data.ogg.ALBUM;
+    stat.album = {
+      albumTitle: data.ogg.ALBUM,
+      year: data.ogg.YEAR,
+    };
+    statsListener.sources = ['ogg'];
+  } else {
+    //statsListener?.stop();
   }
 
-  callback({
-    title,
-  });
-
-  // if (title && title !== streamData.title) {
-  //   streamData.title = title;
-  //   loadAlbumImage(title);
-  // }
+  callback(stat);
 }
+
+function startRead(url: string, onStats: (stat: TrackStat) => void) {
+  statsListener?.stop();
+  callback = onStats;
+
+  if (url.startsWith('https://101.ru'))
+    statsListener = new StreamDataReaderJson(url, onStats);
+  else
+    statsListener = new IcecastMetadataStats(url, {
+      sources: ['icy', 'ogg', 'stats'], //, '7.html', 'status-json.xsl'],
+      onStats: _onStats,
+    });
+
+  statsListener.start();
+}
+
+export default startRead;
 
 // function loadAlbumImage(title: string) {
 //   fetch(`https://live2.mystreamplayer.com/album.php?key=${title}`).then(
@@ -96,19 +122,3 @@ function _onStats(data: any) {
 //     }
 //   );
 // }
-function startRead(url: string, onStats: (stat: TrackStat) => void) {
-  statsListener?.stop();
-  callback = onStats;
-
-  if (url.startsWith('https://101.ru'))
-    statsListener = new StreamDataReaderJson(url, onStats);
-  else
-    statsListener = new IcecastMetadataStats(url, {
-      sources: ['icy', 'ogg'], // 'stats', '7.html', 'status-json.xsl'],
-      onStats: _onStats,
-    });
-
-  statsListener.start();
-}
-
-export default startRead;

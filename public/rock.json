@@ -1,63 +1,60 @@
 {
   "name": "Rock",
-  "collections": [
+  "streams": [
     {
-      "name": "Rock #1",
-      "streams": [
-        {
-          "name": "Неслучайное радио",
-          "src": "https://aska.ru-hoster.com:8006/stream",
-          "desc": "",
-          "img": "https://www.radiobells.com/stations/nesrock.webp"
-        },
-        {
-          "name": "Два Берега",
-          "src": "https://radio-connect.dline-media.com/ber_FM.mp3",
-          "desc": "",
-          "img": "https://top-radio.ru/assets/image/radio/180/radio-dva-berega.png"
-        },
-        {
-          "name": "Rock FM",
-          "src": "https://nashe1.hostingradio.ru/rock-128.mp3",
-          "desc": "",
-          "img": "https://www.rockfm.ru/img/logo-rock.png"
-        },
-        {
-          "name": "Русский Рок",
-          "src": "https://rock.amgradio.ru/RusRock?101ru",
-          "desc": "",
-          "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/image/29df06c0e16f87e05c0bc1fde0247164.png?w=300&h=300&pos=center&q=100&t=1748423844"
-        },
-        {
-          "name": "Наутилус Помпилиус",
-          "src": "https://pub0202.101.ru:8443/stream/pro/aac/64/126",
-          "desc": "",
-          "img": "https://top-radio.ru/assets/image/radio/180/nautilus-pompilius-101ru.jpg"
-        },
-        {
-          "name": "Bar Legend Radio",
-          "src": "https://stream02.pcradio.ru/bar_legend-med",
-          "desc": ""
-        },
-        {
-          "name": "Radio Prog",
-          "src": "https://jfm1.hostingradio.ru:14536/prog.mp3",
-          "desc": ""
-        },
-        {
-          "name": "Classic Rock Florida",
-          "src": "https://vip2.fastcast4u.com/proxy/classicrockdoug",
-          "desc": "",
-          "img": "https://img1.wsimg.com/isteam/ip/a03fc5ad-e0a9-4726-80d4-3fe65da6d855/Classic%20Rock%20Florida%20B.png"
-        },
-        {
-          "name": "Радио Эрмитаж",
-          "src": " https://hermitage.hostingradio.ru/hermitage128.mp3",
-          "desc": "",
-          "img": "https://hermitage.fm/images/logo.svg"
-        }
-      ]
+      "name": "Неслучайное радио",
+      "src": "https://aska.ru-hoster.com:8006/stream",
+      "desc": "",
+      "img": "https://www.radiobells.com/stations/nesrock.webp"
     },
+    {
+      "name": "Два Берега",
+      "src": "https://radio-connect.dline-media.com/ber_FM.mp3",
+      "desc": "",
+      "img": "https://top-radio.ru/assets/image/radio/180/radio-dva-berega.png"
+    },
+    {
+      "name": "Rock FM",
+      "src": "https://nashe1.hostingradio.ru/rock-128.mp3",
+      "desc": "",
+      "img": "https://www.rockfm.ru/img/logo-rock.png"
+    },
+    {
+      "name": "Русский Рок",
+      "src": "https://rock.amgradio.ru/RusRock?101ru",
+      "desc": "",
+      "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/image/29df06c0e16f87e05c0bc1fde0247164.png?w=300&h=300&pos=center&q=100&t=1748423844"
+    },
+    {
+      "name": "Наутилус Помпилиус",
+      "src": "https://pub0202.101.ru:8443/stream/pro/aac/64/126",
+      "desc": "",
+      "img": "https://top-radio.ru/assets/image/radio/180/nautilus-pompilius-101ru.jpg"
+    },
+    {
+      "name": "Bar Legend Radio",
+      "src": "https://stream02.pcradio.ru/bar_legend-med",
+      "desc": ""
+    },
+    {
+      "name": "Radio Prog",
+      "src": "https://jfm1.hostingradio.ru:14536/prog.mp3",
+      "desc": ""
+    },
+    {
+      "name": "Classic Rock Florida",
+      "src": "https://vip2.fastcast4u.com/proxy/classicrockdoug",
+      "desc": "",
+      "img": "https://img1.wsimg.com/isteam/ip/a03fc5ad-e0a9-4726-80d4-3fe65da6d855/Classic%20Rock%20Florida%20B.png"
+    },
+    {
+      "name": "Радио Эрмитаж",
+      "src": " https://hermitage.hostingradio.ru/hermitage128.mp3",
+      "desc": "",
+      "img": "https://hermitage.fm/images/logo.svg"
+    }
+  ],
+  "playlists": [
     {
       "name": "101.ru",
       "streams": [

@@ -105,11 +105,12 @@ audio.addEventListener('loadstart', (event) => {
 
 audio.addEventListener('loadeddata', (event) => {
   console.log('loadeddata');
+  audio.play();
   //player.status = PlayerStatus.waiting;
 });
 
 audio.addEventListener('loadedmetadata', (event) => {
-  console.log('loadedmetadata', event);
+  //console.log('loadedmetadata', event);
 });
 
 audio.addEventListener('waiting', (event) => {
@@ -145,6 +146,7 @@ loadState();
 
 export {
   player,
+  PlayerStatus,
   //analyser,
   init,
 };

@@ -1,8 +1,10 @@
 <template>
   <div class="row items-center">
     <div class="q-ma-xs">
-      <q-img :src="streamData.image || '/icons/favicon-128x128.png'"
-        style="width: 70px; height: 70px; border-radius: 50%" />
+      <q-btn flat round to="/stream">
+        <q-img :src="streamData.image || '/img/dynamic.png'" style="width: 70px; height: 70px; border-radius: 50%" />
+      </q-btn>
+
     </div>
     <div class="col">
       <div class="q-mx-sm row items-center no-wrap text2">
@@ -27,14 +29,15 @@
             color="accent" text-color="black" />
           <q-btn @click="AudioLibrary.nextStream()" icon="las la-step-forward" flat round />
 
-          <q-btn @click="AudioLibrary.random()" icon="las la-random" flat round class="q-ml-md"></q-btn>
+          <q-btn @click="AudioLibrary.random()" icon="las la-random" flat round class="q-ml-md" />
         </div>
         <q-space />
-        <div class="row no-wrap">
+        <q-btn icon="las la-sliders-h" flat round to="/settings/sound" />
+        <div class="row no-wrap" @mousewheel.prevent="setVolume">
           <q-btn @click="showVolume" :icon="'las la-volume-' + (player.muted ? 'mute' : 'up')" flat round>
-            <span class="text-caption text-weight-light">{{
-              player.volume
-            }}</span>
+            <span class="text-caption text-weight-light">
+              {{ player.volume }}
+            </span>
           </q-btn>
         </div>
 
@@ -53,14 +56,12 @@
 
 <script setup>
 import { ref } from 'vue';
-import { player, init } from './Audio';
+import { player } from './Audio';
 import AudioLibrary from './AudioLibrary';
 import streamData from './StreamData';
 //import AudioStreamAnimation from './AudioStreamAnimation.vue';
 let volumeVisible = ref(false);
 let timer = 0;
-
-init();
 
 function showVolume() {
   if (timer) {
@@ -75,6 +76,18 @@ function showVolume() {
       volumeVisible.value = false;
     }, 15000);
   }
+}
+function setVolume(e) {
+  let v = player.volume
+  if (e.wheelDelta > 0) {
+    v += 5;
+    if (v > 100) v = 100
+  }
+  else {
+    v -= 5;
+    if (v < 0) v = 0
+  }
+  player.volume = v
 }
 </script>
 <style scoped lang="scss">

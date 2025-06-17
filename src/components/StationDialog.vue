@@ -1,10 +1,11 @@
 <template>
   <q-dialog ref="dialogRef" @hide="onDialogHide">
     <q-card class="q-dialog-plugin q-pa-md">
-      <q-card-section>
-        <div class="text-h6 text-center">Станция</div>
+      <q-card-section class="row">
+        <div class="text-h6 text-center col">Станция</div>
+        <q-btn size="sm" flat round color="negative" icon="las la-times" v-close-popup />
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
 
       <q-card-section>
         <q-input v-model="_new.name" label="Название" />
