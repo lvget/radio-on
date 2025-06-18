@@ -15,9 +15,9 @@ watch(() => AudioLibrary.currentStream, read);
 watch(
   () => player.status,
   (s) => {
-    if (s === PlayerStatus.playing) {
+    if (player.isPlay()) {
       read(AudioLibrary.currentStream);
-    } else if (s === PlayerStatus.stoping) {
+    } else if (player.isStop()) {
       //read(null);
     }
   }
