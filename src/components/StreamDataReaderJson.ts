@@ -109,7 +109,11 @@ function startRead(url: string, onStats: (stat: TrackStat) => void) {
   statsListener.start();
 }
 
-export default startRead;
+function stopRead() {
+  statsListener?.stop();
+}
+
+export { startRead, stopRead };
 
 // function loadAlbumImage(title: string) {
 //   fetch(`https://live2.mystreamplayer.com/album.php?key=${title}`).then(
