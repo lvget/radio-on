@@ -38,10 +38,14 @@ const EmptyStream: AudioStream = {
   img: '',
 };
 
-// const EmptyCollection: AudioCollection = {
-//   name: '',
-//   streams: [],
-// };
+let allStreams: AudioStream[] = [];
+
+function getStreams(p: Playlist): AudioStream[] {
+  let res = [] as AudioStream[];
+  p.streams.forEach((x) => res.push(x));
+  (p.playlists || []).forEach((c) => getStreams(c).forEach((x) => res.push(x)));
+  return res;
+}
 
 const favorite: Playlist = {
   name: 'Избранное',
@@ -70,29 +74,30 @@ const stor = reactive({
     }
   },
   nextStream() {
-    let idx = this.currentPlaylist.streams.findIndex(
+    let idx = allStreams.findIndex(
       (item) => item.name == this.currentStream.name
     );
     idx++;
-    if (idx >= this.currentPlaylist.streams.length) idx = 0;
-    this.selectStream(this.currentPlaylist.streams[idx]); // % this.currentPlaylist.streams.length]
+    if (idx >= allStreams.length) idx = 0;
+    this.selectStream(allStreams[idx]);
   },
   prevStream() {
-    let idx = this.currentPlaylist.streams.findIndex(
+    let idx = allStreams.findIndex(
       (item) => item.name == this.currentStream.name
     );
     idx--;
-    if (idx < 0) idx = this.currentPlaylist.streams.length - 1;
-    this.selectStream(this.currentPlaylist.streams[idx]);
+    if (idx < 0) idx = allStreams.length - 1;
+    this.selectStream(allStreams[idx]);
   },
   random() {
-    const idx = Math.floor(Math.random() * this.currentPlaylist.streams.length);
-    this.currentStream = this.currentPlaylist.streams[idx];
+    const idx = Math.floor(Math.random() * allStreams.length);
+    this.currentStream = allStreams[idx];
     this.play();
   },
 
-  selectCollection(col: Playlist) {
-    this.currentPlaylist = col;
+  selectCollection(p: Playlist) {
+    this.currentPlaylist = p;
+    allStreams = getStreams(p);
     LocalStorage.setItem('currentPlaylist', this.currentPlaylist.name);
   },
   selectStream(stream: AudioStream) {

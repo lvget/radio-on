@@ -130,7 +130,6 @@ const playlists = computed(() => {
   return res;
 })
 
-
 const collections = computed(() => {
   let text = settings.searchText.toLocaleLowerCase();
   let res = [] as Playlist[];

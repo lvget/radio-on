@@ -24,6 +24,11 @@ watch(
   }
 );
 function read(stream: AudioStream) {
+  streamData.title = '';
+  //streamData.image = AudioLibrary.currentStream.img || '';
+  streamData.album = null;
+  streamData.file = null;
+  streamData.stat = null;
   startRead(stream.desc || stream.src, onStats);
 }
 
