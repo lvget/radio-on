@@ -1,87 +1,100 @@
 <template>
   <div class="social-auth-card text-center q-pa-md">
     <div class="text-h q-mb-md">Войти через соцсети</div>
-
     <div class="row q-gutter-md justify-center">
-      <!-- Google -->
-      <q-btn round color="red" icon="fa-brands fa-google" @click="signInWithProvider('google')"
-        :loading="loading.google">
-        <q-tooltip>Войти с Google</q-tooltip>
-      </q-btn>
-
-      <!-- Facebook -->
-      <q-btn round color="blue" icon="fa-brands fa-facebook-f" @click="signInWithProvider('facebook')"
-        :loading="loading.facebook">
-        <q-tooltip>Войти с Facebook</q-tooltip>
-      </q-btn>
-
-      <!-- Twitter -->
-      <q-btn round color="light-blue" icon="fa-brands fa-twitter" @click="signInWithProvider('twitter')"
-        :loading="loading.twitter">
-        <q-tooltip>Войти с Twitter</q-tooltip>
-      </q-btn>
-
-      <!-- GitHub -->
-      <q-btn round color="dark" icon="fa-brands fa-github" @click="signInWithProvider('github')"
-        :loading="loading.github">
-        <q-tooltip>Войти с GitHub</q-tooltip>
-      </q-btn>
-
-      <!-- Microsoft -->
-      <q-btn round color="grey-8" icon="fa-brands fa-microsoft" @click="signInWithProvider('microsoft')"
-        :loading="loading.microsoft">
-        <q-tooltip>Войти с Microsoft</q-tooltip>
-      </q-btn>
+      <template v-for="p in providers" :key="p.name">
+        <q-btn round :color="p.color" :icon="p.icon" @click="signInWithProvider(p)" :loading="p.loading">
+          <q-tooltip>Войти с {{ p.name }}</q-tooltip>
+        </q-btn>
+      </template>
     </div>
+
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
-import { signInWithPopup } from 'firebase/auth'
 import {
-  auth,
-  googleProvider,
-  facebookProvider,
-  twitterProvider,
-  githubProvider,
-  microsoftProvider
-} from 'src/firebase/config'
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  TwitterAuthProvider,
+  GithubAuthProvider,
+  OAuthProvider, // Для Microsoft
+} from 'firebase/auth';
+import { auth } from 'src/firebase/config'
+
+const providers = ref([{
+  name: 'google',
+  icon: 'fa-brands fa-google',
+  color: 'red',
+  tooltip: 'Войти с Google',
+  provider: GoogleAuthProvider,
+  loading: false
+},//{
+//   name: 'facebook',
+//   icon: 'fa-brands fa-facebook-f',
+//   color: 'blue',
+//   tooltip: 'Войти с Facebook',
+//   provider: FacebookAuthProvider,
+//  loading: false
+// }, {
+//   name: 'twitter',
+//   icon: 'fa-brands fa-twitter',
+//   color: 'light-blue',
+//   tooltip: 'Войти с Twitter',
+//   provider: TwitterAuthProvider,
+//  loading: false
+// },
+{
+  name: 'github',
+  icon: 'fa-brands fa-github',
+  color: 'dark',
+  tooltip: 'Войти с GitHub',
+  provider: GithubAuthProvider,
+  loading: false
+}, {
+  name: 'microsoft',
+  icon: 'fa-brands fa-microsoft',
+  color: 'grey-8',
+  tooltip: 'Войти с Microsoft',
+  provider: OAuthProvider, // Для Microsoft new OAuthProvider('microsoft.com');
+  loading: false
+}])
+
+// Инициализация провайдеров
+// const googleProvider = new GoogleAuthProvider();
+// const facebookProvider = new FacebookAuthProvider();
+// const twitterProvider = new TwitterAuthProvider();
+// const githubProvider = new GithubAuthProvider();
+// const microsoftProvider = new OAuthProvider('microsoft.com');
+
 
 const $q = useQuasar()
 
-const loading = ref({
-  google: false,
-  facebook: false,
-  twitter: false,
-  github: false,
-  microsoft: false
-})
-
-const getProvider = (providerName) => {
-  switch (providerName) {
-    case 'google': return googleProvider
-    case 'facebook': return facebookProvider
-    case 'twitter': return twitterProvider
-    case 'github': return githubProvider
-    case 'microsoft': return microsoftProvider
-    default: throw new Error('Unknown provider')
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    console.log('User is signed in:', user.uid);
+  } else {
+    console.log('User is signed out');
   }
-}
-
-const signInWithProvider = async (providerName) => {
-  loading.value[providerName] = true
+});
+const signInWithProvider = async (providerInfo) => {
+  providerInfo.loading = true
 
   try {
-    const provider = getProvider(providerName)
-    await signInWithPopup(auth, provider)
-
-    $q.notify({
-      color: 'positive',
-      message: `Успешный вход через ${providerName.charAt(0).toUpperCase() + providerName.slice(1)}!`,
-      icon: 'check_circle'
-    })
+    const provider = new providerInfo.provider()
+    const result = await signInWithPopup(auth, provider)
+    //const result = await auth().signInWithPopup(provider);
+    console.log('User:', result.user);
+    console.
+      $q.notify({
+        color: 'positive',
+        message: `Успешный вход через ${providerInfo.name.charAt(0).toUpperCase() + providerInfo.name.slice(1)}!`,
+        icon: 'check_circle'
+      })
   } catch (error) {
 
     let errorMessage = 'Ошибка авторизации'
@@ -101,9 +114,46 @@ const signInWithProvider = async (providerName) => {
       icon: 'error'
     })
   } finally {
-    loading.value[providerName] = false
+    providerInfo.loading = false
   }
 }
+
+// const signInWithProvider = async (providerName) => {
+//   loading.value[providerName] = true
+
+//   try {
+//     const provider = getProvider(providerName)
+//     const result = await signInWithPopup(auth, provider)
+//     //const result = await auth().signInWithPopup(provider);
+//     console.log('User:', result.user);
+//     console.
+//       $q.notify({
+//         color: 'positive',
+//         message: `Успешный вход через ${providerName.charAt(0).toUpperCase() + providerName.slice(1)}!`,
+//         icon: 'check_circle'
+//       })
+//   } catch (error) {
+
+//     let errorMessage = 'Ошибка авторизации'
+
+//     // Обработка специфичных ошибок
+//     if (error.code === 'auth/account-exists-with-different-credential') {
+//       errorMessage = 'Аккаунт уже существует с другими учетными данными'
+//     } else if (error.code === 'auth/popup-closed-by-user') {
+//       errorMessage = 'Окно авторизации было закрыто'
+//     } else {
+//       errorMessage = error.message
+//     }
+
+//     $q.notify({
+//       color: 'negative',
+//       message: errorMessage,
+//       icon: 'error'
+//     })
+//   } finally {
+//     loading.value[providerName] = false
+//   }
+// }
 </script>
 
 <style scoped>

@@ -21,16 +21,16 @@
         </q-tab-panel>
       </q-tab-panels>
     </div> -->
-    <LoginUi />
+    <SocialAuth />
   </q-page>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import LoginForm from 'components/auth/LoginForm.vue'
-import RegisterForm from 'components/auth/RegisterForm.vue'
+//import LoginForm from 'components/auth/LoginForm.vue'
+//import RegisterForm from 'components/auth/RegisterForm.vue'
 import SocialAuth from 'components/auth/SocialAuth.vue'
-import LoginUi from 'components/auth/LoginUi.vue'
+//import LoginUi from 'components/auth/LoginUi.vue'
 
 const tab = ref('social')
 </script>

@@ -40,10 +40,16 @@ const EmptyStream: AudioStream = {
 
 let allStreams: AudioStream[] = [];
 
+// function getStreams(p: Playlist): AudioStream[] {
+//   let res = [] as AudioStream[];
+//   p.streams.forEach((x) => res.push(x));
+//   (p.playlists || []).forEach((c) => getStreams(c).forEach((x) => res.push(x)));
+//   return res;
+// }
+
 function getStreams(p: Playlist): AudioStream[] {
-  let res = [] as AudioStream[];
-  p.streams.forEach((x) => res.push(x));
-  (p.playlists || []).forEach((c) => getStreams(c).forEach((x) => res.push(x)));
+  let res = [...p.streams];
+  p.playlists?.forEach((c) => res.push(...getStreams(c)));
   return res;
 }
 

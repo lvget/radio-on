@@ -4,7 +4,7 @@
       <q-toolbar>
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
         <q-toolbar-title>
-          Settings
+          {{ headTitle }}
         </q-toolbar-title>
         <q-btn flat dense round icon="close" to="/" />
       </q-toolbar>
@@ -20,51 +20,19 @@
             <q-btn flat dense round icon="las la-redo-alt" @click="clearSettings" title="Сбросить настройки" />
           </q-toolbar>
           <q-space />
-
           <q-list>
-
-            <q-item clickable to="sound">
+            <q-item v-for="m in menu" :key="m.route" :to="m.route" @click="selectMenu(m)" clickable>
               <q-item-section avatar>
-                <q-icon name="las la-headphones" />
+                <q-icon :name="m.icon" />
               </q-item-section>
               <q-item-section>
-                <q-item-label>Sound</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable to="ui">
-              <q-item-section avatar>
-                <q-icon name="las la-palette" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Theme</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable to="login">
-              <q-item-section avatar>
-                <q-icon name="las la-universal-access" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Authorization</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable to="about">
-              <q-item-section avatar>
-                <q-icon name="las la-info" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>About</q-item-label>
+                <q-item-label>{{ m.title }}</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
 
-
-
         </div>
       </q-scroll-area>
-
     </q-drawer>
 
     <q-footer class="bg1 text1">
@@ -86,12 +54,37 @@ defineOptions({
   name: 'SettingsLayout',
 });
 
+const menu = [{
+  title: 'Sound',
+  icon: 'las la-headphones',
+  route: 'sound'
+},
+{
+  title: 'Theme',
+  icon: 'las la-palette',
+  route: 'ui'
+},
+{
+  title: 'Authorization',
+  icon: 'las la-universal-access',
+  route: 'login'
+},
+{
+  title: 'About',
+  icon: 'las la-info',
+  route: 'about'
+}
+]
 const leftDrawerOpen = ref(false);
+const headTitle = ref('Settings');
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 
+function selectMenu(m: any) {
+  headTitle.value = m.title
+}
 function clearSettings() {
   localStorage.clear();
   location.reload();
