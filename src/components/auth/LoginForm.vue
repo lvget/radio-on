@@ -1,5 +1,9 @@
 <template>
   <div>
+    <q-tabs dense class="q-ma-sm" v-model="mode">
+      <q-tab name="login" label="Вход" />
+      <q-tab name="register" label="Регистрация" />
+    </q-tabs>
     <q-form @submit.prevent="handleLogin">
       <q-input dense v-model="email" label="Email" type="email" outlined lazy-rules
         :rules="[val => !!val || 'Email обязателен', isValidEmail]" class="q-mb-xs" />
@@ -13,33 +17,46 @@
         </template>
       </q-input>
 
+      <q-input v-if="mode === 'register'" dense v-model="passwordConfirm" label="Подтверждение"
+        :type="showPassword ? 'text' : 'password'" outlined lazy-rules
+        :rules="[val => !!val || 'Пароль обязателен', val => val.length >= 6 || 'Пароль должен быть не менее 6 символов']"
+        class="q-mb-xs">
+        <template v-slot:append>
+          <q-icon :name="showPassword ? 'visibility_off' : 'visibility'" class="cursor-pointer"
+            @click="showPassword = !showPassword" />
+        </template>
+      </q-input>
+
       <div class="text-center">
-        <q-btn label="Войти" type="submit" color="primary" :loading="loading" />
-        <br>
-        <q-btn class="q-mt-md" label="Забыли пароль?" flat color="primary" @click="resetPassword" :disable="loading"
-          no-caps />
+        <template v-if="mode === 'login'">
+          <q-btn label="Войти" type="submit" color="primary" :loading="loading" />
+          <br>
+          <q-btn class="q-mt-md" label="Забыли пароль?" flat color="primary" @click="resetPassword" :disable="loading"
+            no-caps />
+        </template>
+        <q-btn v-else label="Регистрация" type="submit" color="primary" :loading="loading" />
       </div>
     </q-form>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import { useQuasar } from 'quasar'
+import { NotifyOk, NotifyError } from 'src/quasar-helpers/notify'
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail
 } from 'firebase/auth'
-
-
-const $q = useQuasar()
+import { auth } from 'src/firebase/config'
 
 const email = ref('')
 const password = ref('')
+const passwordConfirm = ref('')
 const showPassword = ref(false)
 const rememberMe = ref(false)
 const loading = ref(false)
+const mode = ref('login')
 
 const isValidEmail = (val) => {
   const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
@@ -49,18 +66,12 @@ const isValidEmail = (val) => {
 const handleLogin = async () => {
   loading.value = true
   try {
-    if (isLoginMode.value) {
+    if (mode.value === 'login') {
       await signInWithEmailAndPassword(auth, email.value, password.value)
-      $q.notify({
-        color: 'positive',
-        message: 'Успешный вход!'
-      })
+      NotifyOk('Успешный вход!')
     } else {
       await createUserWithEmailAndPassword(auth, email.value, password.value)
-      $q.notify({
-        color: 'positive',
-        message: 'Регистрация успешна!'
-      })
+      NotifyOk('Регистрация успешна!')
     }
   } catch (error) {
     let errorMessage = 'Произошла ошибка'
@@ -80,10 +91,7 @@ const handleLogin = async () => {
       default:
         errorMessage = error.message
     }
-    $q.notify({
-      color: 'negative',
-      message: errorMessage
-    })
+    NotifyError(errorMessage)
   } finally {
     loading.value = false
   }
@@ -91,25 +99,16 @@ const handleLogin = async () => {
 
 const resetPassword = async () => {
   if (!email.value) {
-    $q.notify({
-      color: 'negative',
-      message: 'Введите email для восстановления пароля'
-    })
+    NotifyError('Введите email для восстановления пароля')
     return
   }
 
   loading.value = true
   try {
     await sendPasswordResetEmail(auth, email.value)
-    $q.notify({
-      color: 'positive',
-      message: 'Письмо для восстановления пароля отправлено на ваш email'
-    })
+    NotifyOk('Письмо для восстановления пароля отправлено на ваш email')
   } catch (error) {
-    $q.notify({
-      color: 'negative',
-      message: error.message
-    })
+    NotifyError('error.message')
   } finally {
     loading.value = false
   }

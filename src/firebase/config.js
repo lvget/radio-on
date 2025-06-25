@@ -1,13 +1,6 @@
 import { initializeApp } from 'firebase/app';
 //import { getAnalytics } from 'firebase/analytics';
-import {
-  getAuth,
-  // GoogleAuthProvider,
-  // FacebookAuthProvider,
-  // TwitterAuthProvider,
-  // GithubAuthProvider,
-  // OAuthProvider, // Для Microsoft
-} from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB4ttwcs82cTrCuRq3zfwpXOvaG5bi_E7Q',
@@ -22,12 +15,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 const auth = getAuth(app);
-
-// Инициализация провайдеров
-// const googleProvider = new GoogleAuthProvider();
-// const facebookProvider = new FacebookAuthProvider();
-// const twitterProvider = new TwitterAuthProvider();
-// const githubProvider = new GithubAuthProvider();
-// const microsoftProvider = new OAuthProvider('microsoft.com');
 
 export { app, auth };

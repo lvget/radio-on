@@ -14,17 +14,16 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useQuasar } from 'quasar'
 import {
-  getAuth,
   signInWithPopup,
   GoogleAuthProvider,
-  FacebookAuthProvider,
-  TwitterAuthProvider,
+  //FacebookAuthProvider,
+  //TwitterAuthProvider,
   GithubAuthProvider,
   OAuthProvider, // Для Microsoft
 } from 'firebase/auth';
 import { auth } from 'src/firebase/config'
+import { NotifyOk, NotifyError } from 'src/quasar-helpers/notify'
 
 const providers = ref([{
   name: 'google',
@@ -64,16 +63,6 @@ const providers = ref([{
   loading: false
 }])
 
-// Инициализация провайдеров
-// const googleProvider = new GoogleAuthProvider();
-// const facebookProvider = new FacebookAuthProvider();
-// const twitterProvider = new TwitterAuthProvider();
-// const githubProvider = new GithubAuthProvider();
-// const microsoftProvider = new OAuthProvider('microsoft.com');
-
-
-const $q = useQuasar()
-
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log('User is signed in:', user.uid);
@@ -81,21 +70,16 @@ auth.onAuthStateChanged((user) => {
     console.log('User is signed out');
   }
 });
-async function signInWithProvider(providerInfo){
+async function signInWithProvider(providerInfo) {
   providerInfo.loading = true
-debugger
+  debugger
   try {
     const provider = new providerInfo.provider()
     const result = await signInWithPopup(auth, provider)
     //const result = await auth().signInWithPopup(provider);
     console.log('User:', result.user);
-    console.
-      $q.notify({
-        color: 'positive',
-        message: `Успешный вход через ${providerInfo.name.charAt(0).toUpperCase() + providerInfo.name.slice(1)}!`,
-        icon: 'check_circle'
-      })
-  } 
+    NotifyOk('Успешный вход через ' + providerInfo.name.charAt(0).toUpperCase() + providerInfo.name.slice(1) + '!')
+  }
   catch (error) {
 
     let errorMessage = 'Ошибка авторизации'
@@ -108,53 +92,11 @@ debugger
     } else {
       errorMessage = error.message
     }
-
-    $q.notify({
-      color: 'negative',
-      message: errorMessage,
-      icon: 'error'
-    })
+    NotifyError(errorMessage)
   } finally {
     providerInfo.loading = false
   }
 }
-
-// const signInWithProvider = async (providerName) => {
-//   loading.value[providerName] = true
-
-//   try {
-//     const provider = getProvider(providerName)
-//     const result = await signInWithPopup(auth, provider)
-//     //const result = await auth().signInWithPopup(provider);
-//     console.log('User:', result.user);
-//     console.
-//       $q.notify({
-//         color: 'positive',
-//         message: `Успешный вход через ${providerName.charAt(0).toUpperCase() + providerName.slice(1)}!`,
-//         icon: 'check_circle'
-//       })
-//   } catch (error) {
-
-//     let errorMessage = 'Ошибка авторизации'
-
-//     // Обработка специфичных ошибок
-//     if (error.code === 'auth/account-exists-with-different-credential') {
-//       errorMessage = 'Аккаунт уже существует с другими учетными данными'
-//     } else if (error.code === 'auth/popup-closed-by-user') {
-//       errorMessage = 'Окно авторизации было закрыто'
-//     } else {
-//       errorMessage = error.message
-//     }
-
-//     $q.notify({
-//       color: 'negative',
-//       message: errorMessage,
-//       icon: 'error'
-//     })
-//   } finally {
-//     loading.value[providerName] = false
-//   }
-// }
 </script>
 
 <style scoped>
