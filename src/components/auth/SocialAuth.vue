@@ -1,6 +1,6 @@
 <template>
   <div class="social-auth-card text-center q-pa-md">
-    <div class="text-h q-mb-md">Войти через соцсети</div>
+    <div class="text-h q-mb-md">Войти через соцсети.</div>
     <div class="row q-gutter-md justify-center">
       <template v-for="p in providers" :key="p.name">
         <q-btn round :color="p.color" :icon="p.icon" @click="signInWithProvider(p)" :loading="p.loading">
@@ -81,9 +81,9 @@ auth.onAuthStateChanged((user) => {
     console.log('User is signed out');
   }
 });
-const signInWithProvider = async (providerInfo) => {
+async function signInWithProvider(providerInfo){
   providerInfo.loading = true
-
+debugger
   try {
     const provider = new providerInfo.provider()
     const result = await signInWithPopup(auth, provider)
@@ -95,7 +95,8 @@ const signInWithProvider = async (providerInfo) => {
         message: `Успешный вход через ${providerInfo.name.charAt(0).toUpperCase() + providerInfo.name.slice(1)}!`,
         icon: 'check_circle'
       })
-  } catch (error) {
+  } 
+  catch (error) {
 
     let errorMessage = 'Ошибка авторизации'
 
