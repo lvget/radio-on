@@ -1,7 +1,7 @@
 import { QDialogOptions, Dialog } from 'quasar'
 
-function toOptions(opt: QDialogOptions|string){
-  if(typeof opt == 'string'){
+function toOptions(opt: QDialogOptions | string) {
+  if (typeof opt == 'string') {
     opt = {
       title: opt,
       html: true
@@ -11,12 +11,12 @@ function toOptions(opt: QDialogOptions|string){
   return opt;
 }
 
-export function Alert(opt: QDialogOptions|string){
+export function Alert(opt: QDialogOptions | string) {
   opt = toOptions(opt);
   return Dialog.create(opt)
 }
 
-export function Prompt(opt: QDialogOptions|string, value: string=''){
+export function Prompt(opt: QDialogOptions | string, value = '') {
   opt = toOptions(opt);
   opt.cancel = true;
   opt.prompt = {
@@ -27,7 +27,7 @@ export function Prompt(opt: QDialogOptions|string, value: string=''){
   return Dialog.create(opt)
 }
 
-export function Confirm(opt: QDialogOptions|string){
+export function Confirm(opt: QDialogOptions | string) {
   opt = toOptions(opt);
   opt.cancel = true;
   return Dialog.create(opt);
@@ -36,5 +36,5 @@ export function Confirm(opt: QDialogOptions|string){
 export default {
   alert: Alert,
   prompt: Prompt,
-  confir: Confirm
+  confirm: Confirm
 }

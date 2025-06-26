@@ -58,7 +58,7 @@ const rememberMe = ref(false)
 const loading = ref(false)
 const mode = ref('login')
 
-const isValidEmail = (val) => {
+const isValidEmail = (val: string) => {
   const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
   return emailPattern.test(val) || 'Некорректный email'
 }
@@ -73,7 +73,7 @@ const handleLogin = async () => {
       await createUserWithEmailAndPassword(auth, email.value, password.value)
       NotifyOk('Регистрация успешна!')
     }
-  } catch (error) {
+  } catch (error: any) {
     let errorMessage = 'Произошла ошибка'
     switch (error.code) {
       case 'auth/user-not-found':
