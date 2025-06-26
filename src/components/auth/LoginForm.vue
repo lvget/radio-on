@@ -41,14 +41,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { NotifyOk, NotifyError } from 'src/quasar-helpers/notify'
 import {
+  AuthErrorCodes,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail
 } from 'firebase/auth'
-import { auth } from 'src/firebase/config'
+import { auth } from 'src/firebase/app'
+
 
 const email = ref('')
 const password = ref('')
@@ -58,34 +60,48 @@ const rememberMe = ref(false)
 const loading = ref(false)
 const mode = ref('login')
 
+watch(mode, () => {
+  email.value = ''
+  password.value = ''
+  passwordConfirm.value = ''
+})
+
 const isValidEmail = (val: string) => {
   const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
   return emailPattern.test(val) || 'Некорректный email'
 }
 
 const handleLogin = async () => {
-  loading.value = true
   try {
     if (mode.value === 'login') {
+      loading.value = true
       await signInWithEmailAndPassword(auth, email.value, password.value)
       NotifyOk('Успешный вход!')
     } else {
+      if (password.value !== passwordConfirm.value) {
+        NotifyError('Пароли не совпадают')
+        return;
+      }
+      loading.value = true
       await createUserWithEmailAndPassword(auth, email.value, password.value)
       NotifyOk('Регистрация успешна!')
+      email.value = ''
+      password.value = ''
+      passwordConfirm.value = ''
     }
   } catch (error: any) {
     let errorMessage = 'Произошла ошибка'
     switch (error.code) {
-      case 'auth/user-not-found':
+      case AuthErrorCodes.USER_DELETED:
         errorMessage = 'Пользователь не найден'
         break
-      case 'auth/wrong-password':
+      case AuthErrorCodes.INVALID_PASSWORD:
         errorMessage = 'Неверный пароль'
         break
-      case 'auth/email-already-in-use':
+      case AuthErrorCodes.EMAIL_EXISTS:
         errorMessage = 'Email уже используется'
         break
-      case 'auth/weak-password':
+      case AuthErrorCodes.WEAK_PASSWORD:
         errorMessage = 'Пароль слишком слабый'
         break
       default:

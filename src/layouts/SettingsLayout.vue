@@ -14,7 +14,15 @@
       <q-scroll-area class="fit">
         <div class="column fit">
           <q-toolbar class="bg1 text1">
-            <q-btn flat dense to="/" no-caps title="На главную">Radio-On</q-btn>
+            <q-btn flat dense no-caps title="На главную" label="Radio-On">
+            <q-menu>
+            <q-list dense>
+            <q-item clickable to="/" v-close-popup>
+              <q-item-section>На главную</q-item-section>
+            </q-item>
+            </q-list>
+            </q-menu>
+            </q-btn>
             <!-- <div>Radio-On</div> -->
             <q-space />
             <q-btn flat dense round icon="las la-redo-alt" @click="clearSettings" title="Сбросить настройки" />

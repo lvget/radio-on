@@ -5,7 +5,8 @@ import equalizer from './Equalizer';
 
 function onDOMReady(callback: () => void) {
   if (document.readyState !== 'loading') {
-    callback();
+    setInterval(callback, 1000);
+    //callback();
   } else {
     document.addEventListener('DOMContentLoaded', callback);
   }
@@ -20,6 +21,7 @@ analyser.fftSize = 256;
 equalizer.init(audioContext);
 
 function initAudio() {
+
   let audioSource = audioContext.createMediaElementSource(audio);
   equalizer.input(audioSource).connect(audioContext.destination);
   //equalizer.input(audioSource).connect(analyser);

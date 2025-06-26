@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { auth } from 'src/firebase/config'
+import { auth } from 'src/firebase/app'
 import firebase from 'firebase/compat/app'
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'

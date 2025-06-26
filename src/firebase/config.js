@@ -1,7 +1,3 @@
-import { initializeApp } from 'firebase/app';
-//import { getAnalytics } from 'firebase/analytics';
-import { getAuth } from 'firebase/auth';
-
 const firebaseConfig = {
   apiKey: 'AIzaSyB4ttwcs82cTrCuRq3zfwpXOvaG5bi_E7Q',
   authDomain: 'onlineradio-d76b5.firebaseapp.com',
@@ -12,8 +8,4 @@ const firebaseConfig = {
   measurementId: 'G-TXVVTMCTX0',
 };
 
-const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
-const auth = getAuth(app);
-
-export { app, auth };
+export default firebaseConfig;

@@ -1,6 +1,6 @@
 <template>
-  <div class="social-auth-card text-center q-pa-md">
-    <div class="text-h q-mb-md">Войти через соцсети.</div>
+  <div class="text-center q-pa-md">
+    <div class="q-mb-md">Войти через </div>
     <div class="row q-gutter-md justify-center">
       <template v-for="p in providers" :key="p.name">
         <q-btn round :color="p.color" :icon="p.icon" @click="signInWithProvider(p)" :loading="p.loading">
@@ -8,7 +8,6 @@
         </q-btn>
       </template>
     </div>
-
   </div>
 </template>
 
@@ -22,7 +21,7 @@ import {
   GithubAuthProvider,
   OAuthProvider, // Для Microsoft
 } from 'firebase/auth';
-import { auth } from 'src/firebase/config'
+import { auth } from 'src/firebase/app'
 import { NotifyOk, NotifyError } from 'src/quasar-helpers/notify'
 
 const providers = ref([{
@@ -63,16 +62,8 @@ const providers = ref([{
   loading: false
 }])
 
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    console.log('User is signed in:', user.uid);
-  } else {
-    console.log('User is signed out');
-  }
-});
 async function signInWithProvider(providerInfo) {
   providerInfo.loading = true
-  debugger
   try {
     const provider = new providerInfo.provider()
     const result = await signInWithPopup(auth, provider)
