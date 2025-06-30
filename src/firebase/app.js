@@ -8,15 +8,22 @@ const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-const userFb = ref(null);
+const user = ref(null);
 
-auth.onAuthStateChanged((user) => {
-  userFb.value = user;
-  if (user) {
-    console.log('User is signed in:', user);
+auth.onAuthStateChanged((userImpl) => {
+  if (userImpl) {
+    console.log('User is signed in:', userImpl);
+    user.value = {
+      uid: userImpl.uid,
+      email: userImpl.email,
+      displayName: userImpl.displayName,
+      photoURL: userImpl.photoURL,
+      providerId: userImpl.providerData[0].providerId,
+    };
   } else {
-    console.log('User is signed out', user);
+    console.log('User is signed out');
+    user.value = null;
   }
 });
 
-export { app, auth, userFb };
+export { app, auth, user };
