@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth</title>
+</head>
+
+<body>
+  Auth
+  <!-- <div id="params"></div>
+  <button onclick="send();">Send</button> -->
+</body>
+
+<script>
+  let params = window.location.search.substring(1)
+    .split('&')
+    .map((v) => v.split('='))
+    .reduce((a, v) => (a[v[0]] = v[1], a), {});
+
+  //console.log(params);
+  //document.querySelector('#params').innerHTML = JSON.stringify(params, null, '  ');
+
+  window.opener.postMessage(params, window.location.origin);
+
+  // function send() {
+  //   window.opener.postMessage(params, window.location.origin);
+  // }
+</script>
+
+</html>
