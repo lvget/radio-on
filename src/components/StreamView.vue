@@ -29,7 +29,8 @@
           </div>
         </div>
 
-      </q-card-section><q-btn icon="close" flat round class="absolute-top-right" to="/" />
+      </q-card-section>
+      <q-btn icon="close" flat round class="absolute-top-right" to="/" />
     </q-card>
   </div>
 </template>

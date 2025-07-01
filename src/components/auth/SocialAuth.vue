@@ -79,7 +79,7 @@ async function signIn(providerInfo) {
     if (providerInfo.name === 'yandex') {
       result = await signInWithPopupYandex(auth)
     } else {
-      result = await signInWithPopup(auth, providerInfo.provider())
+      result = await signInWithPopup(auth, new providerInfo.provider())
     }
 
 
