@@ -12,16 +12,17 @@
     "deploy:test": "firebase hosting:channel:deploy test",
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0",
-    "icongenie": "icongenie generate -m pwa --icon src/assets/icon2.png",
-    "backup": "node ../backup.js b",
-    "git:push": "git add . && git commit -m \"update\" && git push origin main"
+    "icongenie": "icongenie generate -m pwa --icon src/assets/app-icon.png",
+    "git-push": "git add . && git commit -m \"update\" && git push origin main",
+    "git-pull": "git pull origin main",
+    "git-status": "git status",
+    "git-stash": "git stash",
+    "git-pop": "git stash pop",
+    "git-reset": "git fetch && git reset --hard origin/main && git clean -fd"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
     "firebase": "^10.11.1",
-    "firebase-admin": "^13.4.0",
-    "firebaseui": "^6.1.0",
     "icecast-metadata-js": "^1.2.8",
     "icecast-metadata-player": "^1.17.2",
     "icecast-metadata-stats": "^0.1.11",

@@ -1,7 +1,6 @@
 import { getAuth, signInWithCustomToken } from 'firebase/auth';
 //import { OAuth2Client } from 'google-auth-library'; // или аналогичная библиотека
 import { auth } from 'src/firebase/app';
-import admin from 'firebase-admin';
 
 // https://oauth.yandex.ru/
 const client_id = 'e8e8dccdee61439bbcdb5e22b9beb299';
@@ -70,7 +69,7 @@ async function signInWithPopupYandex() {
 
         resolve(yandexUser);
       }
-      catch (error) {
+      catch (error: Error|any) {
         reject({ message: error.message });
       }
       finally {
@@ -137,7 +136,7 @@ async function getYandexToken(
       tokenType: data.token_type,
       scope: data.scope,
     };
-  } catch (error) {
+  } catch (error: any) {
     clearTimeout(timeoutId);
 
     let errorMessage = 'Ошибка при получении токена';
