@@ -14,7 +14,7 @@
 </body>
 
 <script>
-  let params = window.location.search.substring(1)
+  let __auth = window.location.search.substring(1)
     .split('&')
     .map((v) => v.split('='))
     .reduce((a, v) => (a[v[0]] = v[1], a), {});
@@ -22,7 +22,7 @@
   //console.log(params);
   //document.querySelector('#params').innerHTML = JSON.stringify(params, null, '  ');
 
-  window.opener.postMessage(params, window.location.origin);
+  window.opener.postMessage({ __auth }, window.location.origin);
 
   // function send() {
   //   window.opener.postMessage(params, window.location.origin);

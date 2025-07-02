@@ -1,6 +1,8 @@
 import { getAuth, signInWithCustomToken } from 'firebase/auth';
 //import { OAuth2Client } from 'google-auth-library'; // или аналогичная библиотека
 import { auth } from 'src/firebase/app';
+import admin from 'firebase-admin';
+
 // https://oauth.yandex.ru/
 const client_id = 'e8e8dccdee61439bbcdb5e22b9beb299';
 const client_secret = 'a1d8fb1650424f6f8db8af13175d8e6c';
@@ -16,59 +18,65 @@ async function signInWithPopupYandex() {
       'width=500,height=600'
     );
 
-    if (authWindow) {
-      const intervalId = setInterval(() => {
-        if (authWindow.closed) {
-          clearInterval(intervalId);
-          reject({ message: 'Окно авторизации было закрыто' });
-        }
-      }, 500);
-    } else {
+    if (!authWindow) {
       reject({ message: 'Окно авторизации не удалось создать' });
+      return;
     }
+
+    const intervalId = setInterval(() => {
+      if (authWindow.closed) {
+        clearInterval(intervalId);
+        reject({ message: 'Окно авторизации было закрыто' });
+      }
+    }, 500);
+
 
     // Ожидаем ответа с кодом
     window.addEventListener('message', async (event) => {
-      //console.log('message', event);
-      if (event.origin !== window.location.origin) {
-        return;
+      if (event.origin !== window.location.origin) return;
+
+      const { __auth } = event.data;
+      if (!__auth) return;
+
+      try {
+        if (!__auth.code)
+          throw { message: 'Ошибка авторизации' };
+
+        const { accessToken } = await getYandexToken(
+          __auth.code,
+          client_id,
+          client_secret
+        );
+        console.log('accessToken:', accessToken);
+
+
+        const yandexUser = await getYandexUserInfo(accessToken);
+        console.log('Данные пользователя:', yandexUser);
+
+        // const yandexUser = {
+        //   id: __auth.code,
+        //   real_name: 'yandex_name',
+        //   display_name: 'yandex_name',
+        //   default_email: 'yandex_name' + '@yandex.ru',
+        // }
+        // Создание кастомного токена для Firebase
+        // const firebaseToken = await admin.auth().createCustomToken(yandexUser.id, {
+        //   name: yandexUser.real_name || yandexUser.display_name,
+        //   email: yandexUser.default_email,
+        //   provider: 'yandex'
+        // });
+
+        // await signInWithCustomToken(auth, firebaseToken);
+
+        resolve(yandexUser);
       }
-
-      const { code } = event.data;
-
-      if (!code) {
-        reject({ message: 'Ошибка авторизации' });
-        authWindow?.close();
-        return;
+      catch (error) {
+        reject({ message: error.message });
       }
-
-      const { accessToken } = await getYandexToken(
-        code,
-        client_id,
-        client_secret
-      );
-      console.log('accessToken:', accessToken);
-
-      const userInfo = await getYandexUserInfo(accessToken);
-      console.log('Данные пользователя:', userInfo);
-      // let tokenData;
-      // try {
-      //   const tokenData = await getYandexToken(code, client_id, client_secret);
-      //   console.log('Токен получен:', tokenData);
-      // } catch (error) {
-      //   reject({ message: error.message });
-      //   return;
-      // }
-
-
-      resolve(code);
-      authWindow?.close();
-      // Обмениваем код на токен (это должно делаться на сервере!)
-      //const firebaseToken = await exchangeYandexCodeForFirebaseToken(code);
-
-      // Входим в Firebase с кастомным токеном
-
-      //await signInWithCustomToken(auth, firebaseToken);
+      finally {
+        clearInterval(intervalId);
+        authWindow.close();
+      }
     });
   });
 }
@@ -108,11 +116,10 @@ async function getYandexToken(
       const errorData = await response.json().catch(() => ({}));
       throw new Error(
         errorData.error
-          ? `${errorData.error}${
-              errorData.error_description
-                ? ` (${errorData.error_description})`
-                : ''
-            }`
+          ? `${errorData.error}${errorData.error_description
+            ? ` (${errorData.error_description})`
+            : ''
+          }`
           : `HTTP error ${response.status}`
       );
     }
@@ -166,7 +173,7 @@ async function getYandexUserInfo(accessToken: string) {
     return userData;
   } catch (error) {
     console.error('Ошибка при получении данных пользователя:', error);
-    throw error;
+    throw new Error(`Ошибка при получении данных пользователя: ${error}`);;
   }
 }
 
@@ -186,19 +193,19 @@ async function getSpecificUserData(accessToken: string) {
   return await response.json();
 }
 
-async function exchangeYandexTokenForFirebase(yandexToken) {
-  // Verify Yandex token (implementation depends on your setup)
-  const yandexUser = await verifyYandexToken(yandexToken);
+// async function exchangeYandexTokenForFirebase(yandexToken) {
+//   // Verify Yandex token (implementation depends on your setup)
+//   const yandexUser = await verifyYandexToken(yandexToken);
 
-  // Create a Firebase custom token
-  const firebaseToken = await auth.createCustomToken(yandexUser.id, {
-    provider: 'yandex',
-    name: yandexUser.name,
-    email: yandexUser.email,
-    // other user data you want to include
-  });
+//   // Create a Firebase custom token
+//   const firebaseToken = await auth.createCustomToken(yandexUser.id, {
+//     provider: 'yandex',
+//     name: yandexUser.name,
+//     email: yandexUser.email,
+//     // other user data you want to include
+//   });
 
-  return firebaseToken;
-}
+//   return firebaseToken;
+// }
 
 export { signInWithPopupYandex };
