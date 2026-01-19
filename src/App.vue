@@ -3,10 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import settings from 'src/stores/Settings';
 import { setCssVar, AddressbarColor } from 'quasar'
 import { HSL } from 'src/utils/HSL';
+import { initAudio } from './components/Audio';
 
 const theme = ref('#000');
 const bg1 = ref('#000');
@@ -51,6 +52,10 @@ function chgColor(color: string) {
 }
 
 watch(() => settings.theme, chgColor);
+
+onMounted(() => {
+  initAudio();
+});
 
 chgColor(settings.theme);
 

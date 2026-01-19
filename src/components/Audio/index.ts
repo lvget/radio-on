@@ -4,3 +4,8 @@ export * from './IPlayer';
 //import player from './AudioPlayer';
 export * from './AudioPlayer';
 //export { player };
+
+// Эквалайзеры
+export { default as Equalizer } from './Equalizer';
+export { default as AdvancedEqualizer } from './AdvancedEqualizer';
+export * from './AdvancedEqualizer';

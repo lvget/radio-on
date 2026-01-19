@@ -14,6 +14,12 @@
       "img": "https://top-radio.ru/assets/image/radio/180/radio-dva-berega.png"
     },
     {
+      "name": "Радио Рокс",
+      "src": "https://icecast-radiorocks.cdnvideo.ru/roks.stream",
+      "desc": "",
+      "img": "https://radio-online.ru/uploads/posts/assets/image/radio/180/roks-ru.jpg"
+    },
+    {
       "name": "Rock FM",
       "src": "https://nashe1.hostingradio.ru/rock-128.mp3",
       "desc": "",
@@ -21,9 +27,9 @@
     },
     {
       "name": "Русский Рок",
-      "src": "https://rock.amgradio.ru/RusRock?101ru",
+      "src": "https://rock.amgradio.ru/RusRock",
       "desc": "",
-      "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/image/29df06c0e16f87e05c0bc1fde0247164.png?w=300&h=300&pos=center&q=100&t=1748423844"
+      "img": "https://cdn2.101.ru/proxy/vardata/modules/channel/image/29df06c0e16f87e05c0bc1fde0247164.png?w=300&h=300"
     },
     {
       "name": "Наутилус Помпилиус",
@@ -37,11 +43,6 @@
       "desc": ""
     },
     {
-      "name": "Radio Prog",
-      "src": "https://jfm1.hostingradio.ru:14536/prog.mp3",
-      "desc": ""
-    },
-    {
       "name": "Classic Rock Florida",
       "src": "https://vip2.fastcast4u.com/proxy/classicrockdoug",
       "desc": "",
@@ -49,9 +50,15 @@
     },
     {
       "name": "Радио Эрмитаж",
-      "src": " https://hermitage.hostingradio.ru/hermitage128.mp3",
+      "src": "https://hermitage.hostingradio.ru/hermitage128.mp3",
       "desc": "",
       "img": "https://hermitage.fm/images/logo.svg"
+    },
+    {
+      "name": "Гражданская оборона",
+      "src": "https://stream03.pcradio.biz/Grazhdanskaja_oborona-hi",
+      "desc": "https://meta.pcradio.ru/Grazhdanskaja_oborona_current.json",
+      "img": "https://pcradio.ru/images/stations/61b09d32cce15.jpg"
     }
   ],
   "playlists": [
@@ -364,28 +371,39 @@
       "streams": [
         {
           "name": "HD RADIO ROCK",
-          "src": "https://hdradiorock-rfritschka.radioca.st/stream?type=http&nocache=945",
-          "desc": ""
+          "src": "https://hdradiorock-rfritschka.radioca.st/stream",
+          "desc": "",
+          "img": "https://hd-radio.net/wp-content/uploads/sites/3/2024/05/ROCK-COVER.png"
         },
         {
           "name": "CLASSIC ROCK",
-          "src": "https://hdradioclassicrock-rfritschka.radioca.st/stream?type=http&nocache=9667",
-          "desc": "https://zet.pluginsandthemes.ro/http://rosetta.shoutca.st:8352/stats?sid=1"
+          "src": "https://hdradioclassicrock-rfritschka.radioca.st/stream",
+          "desc": "",
+          "img": "https://hd-radio.net/wp-content/uploads/sites/3/2024/05/CLASSIC-ROCK-COVER.png"
         },
         {
           "name": "THE BLUES",
-          "src": "https://haradioblues-rfritschka.radioca.st/stream?type=http&nocache=20254",
-          "desc": ""
+          "src": "https://haradioblues-rfritschka.radioca.st/stream",
+          "desc": "",
+          "img": "https://hd-radio.net/wp-content/uploads/sites/3/2024/05/THE-BLUES-COVER.png"
         },
         {
           "name": "ROCK 'N ROLL",
-          "src": "https://hdrockandroll-rfritschka.radioca.st/stream?type=http&nocache=6106",
-          "desc": ""
+          "src": "https://hdrockandroll-rfritschka.radioca.st/stream",
+          "desc": "",
+          "img": "https://progoproductions.com/hd-radio/wp-content/uploads/sites/3/2024/05/ROCK-AND-ROLL-COVER.png"
         },
         {
           "name": "HOT 100",
-          "src": "https://hdradiohot100-rfritschka.radioca.st/stream?type=http&nocache=625",
-          "desc": ""
+          "src": "https://hdradiohot100-rfritschka.radioca.st/stream",
+          "desc": "",
+          "icon": "https://progoproductions.com/hd-radio/wp-content/uploads/sites/3/2024/05/HD-Radio-Hot-100.png"
+        },
+        {
+          "name": "Jazz",
+          "src": "https://hdradiojazz-rfritschka.radioca.st",
+          "desc": "",
+          "icon": "https://progoproductions.com/hd-radio/wp-content/uploads/sites/3/2024/05/JAZZ-COVER.png"
         }
       ],
       "icon": "https://hd-radio.net/wp-content/uploads/sites/3/2024/05/HD-Radio-Network-Small.png"

@@ -57,11 +57,13 @@ function updateFilter(i: number) {
   }
   userPreset.gain[i] = filter.value[i];
 }
+
 function setPreset(p: any) {
   presetName.value = p.label;
   equalizer.preset = p.label;
   filter.value = equalizer.filters.map((f) => f.gain.value);
 }
+
 function toggleEnabled() {
   equalizer.enabled = enabled.value;
 }

@@ -1,7 +1,7 @@
 <template>
   <q-scroll-area class="fit">
     <q-toolbar class="bg1 text1">
-      <q-btn flat dense to="/" no-caps title="На главную">Radio-On</q-btn>
+      <q-btn flat dense to="/" no-caps title="На главную">Radio-my</q-btn>
       <q-space />
       <q-btn flat round dense icon="las la-cloud-download-alt" @click="AudioLibrary.openPlaylist()"
         title="Загрузить плейлист" />
@@ -9,7 +9,35 @@
       <q-btn flat round dense icon="las la-plus-circle" @click="AudioLibrary.addPlaylist()" title="Создать плейлист" />
     </q-toolbar>
     <q-separator />
+
+    <!-- Навигационные ссылки -->
     <q-list class="bg2 text2">
+      <!-- <q-item clickable tag="a" to="/equalizer" class="nav-item">
+        <q-item-section avatar>
+          <q-avatar class="bg1 text2">
+            <q-icon name="las la-sliders-h" />
+          </q-avatar>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>Эквалайзер</q-item-label>
+          <q-item-label caption>Продвинутый эквалайзер</q-item-label>
+        </q-item-section>
+      </q-item>
+
+      <q-item clickable tag="a" to="/visualization" class="nav-item">
+        <q-item-section avatar>
+          <q-avatar class="bg1 text2">
+            <q-icon name="las la-chart-line" />
+          </q-avatar>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>Визуализация</q-item-label>
+          <q-item-label caption>Аудио визуализация</q-item-label>
+        </q-item-section>
+      </q-item>
+
+      <q-separator /> -->
+
       <template v-for="p in AudioLibrary.playlists" :key="p.name">
         <q-item clickable tag="a" :to="`/playlist/${p.name}`" @click="AudioLibrary.selectCollection(p)"
           :class="{ 'active ': isActive(p) }">

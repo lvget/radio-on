@@ -17,9 +17,17 @@ const routes: RouteRecordRaw[] = [
         path: '/stream',
         component: () => import('src/components/StreamView.vue'),
       },
+      // {
+      //   path: '/visualization',
+      //   component: () => import('pages/VisualisationPage.vue'),
+      // },
+      // {
+      //   path: '/equalizer',
+      //   component: () => import('src/pages/EqualizerPage.vue'),
+      // },
       {
-        path: '/visualization',
-        component: () => import('pages/VisualisationPage.vue'),
+        path: '/equalizer-test',
+        component: () => import('src/pages/EqualizerTestPage.vue'),
       },
     ],
   },

@@ -116,6 +116,7 @@ const menu = reactive({
   stream: {} as AudioStream
 });
 
+
 const favorites = ref<boolean[]>([]);
 
 const playlists = computed(() => {

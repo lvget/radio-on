@@ -8,7 +8,7 @@ const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-const user = ref(null);
+const user = ref<any>(null);
 
 auth.onAuthStateChanged((userImpl) => {
   if (userImpl) {

@@ -3,14 +3,14 @@ import { IPlayer, PlayerStatus } from './IPlayer';
 import { LocalStorage } from 'quasar';
 import equalizer from './Equalizer';
 
-function onDOMReady(callback: () => void) {
-  if (document.readyState !== 'loading') {
-    setTimeout(callback, 1000);
-    //callback();
-  } else {
-    document.addEventListener('DOMContentLoaded', callback);
-  }
-}
+// function onDOMReady(callback: () => void) {
+//   if (document.readyState !== 'loading') {
+//     setTimeout(callback, 2000);
+//     //callback();
+//   } else {
+//     document.addEventListener('DOMContentLoaded', callback);
+//   }
+// }
 
 let audio = new Audio();
 audio.crossOrigin = 'anonymous';
@@ -18,11 +18,13 @@ audio.crossOrigin = 'anonymous';
 let audioContext = new window.AudioContext();
 let analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;
-equalizer.init(audioContext);
 
 function initAudio() {
   let audioSource = audioContext.createMediaElementSource(audio);
+
+  equalizer.init(audioContext);
   equalizer.input(audioSource).connect(audioContext.destination);
+
   //equalizer.input(audioSource).connect(analyser);
   //analyser.connect(audioContext.destination);
 }
@@ -151,10 +153,11 @@ window.addEventListener('beforeunload', () => {
 
 loadState();
 
-onDOMReady(initAudio);
+//onDOMReady(initAudio);
 
 export {
   player,
   PlayerStatus,
+  initAudio,
   //analyser,
 };

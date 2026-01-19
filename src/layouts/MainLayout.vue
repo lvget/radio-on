@@ -44,12 +44,18 @@
           :color="settings.ui.view === 'list' ? 'accent' : ''" />
         <q-btn flat dense icon="las la-icons" @click="settings.ui.view = 'tile'"
           :color="settings.ui.view === 'tile' ? 'accent' : ''" />
+        <q-btn flat dense icon="las la-sliders-h" to="/equalizer" title="Эквалайзер" />
         <q-btn class="menu-btn" flat dense icon="las la-ellipsis-v" round>
           <q-menu>
             <q-list>
               <q-item clickable to="/settings/login" v-close-popup>
                 <q-item-section avatar><q-icon name="las la-user" /></q-item-section>
                 <q-item-section>Вход</q-item-section>
+              </q-item>
+
+              <q-item clickable to="/equalizer" v-close-popup>
+                <q-item-section avatar><q-icon name="las la-sliders-h" /></q-item-section>
+                <q-item-section>Эквалайзер</q-item-section>
               </q-item>
 
               <q-item clickable to="/settings/about" v-close-popup>

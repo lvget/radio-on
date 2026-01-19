@@ -12,5 +12,5 @@
   "[vue]": {
     "editor.defaultFormatter": "Vue.volar"
   },
-  "cSpell.words": ["audiofile"]
+  "cSpell.words": ["audiofile", "chardet", "icecast"]
 }

@@ -32,11 +32,10 @@
 </template>
 
 <script setup lang="ts">
+import { signOut } from 'firebase/auth'
 import SocialAuth from './SocialAuth.vue'
 import LoginForm from './LoginForm.vue'
-import { user } from 'src/firebase/app'
-import { signOut } from 'firebase/auth'
-import { auth } from 'src/firebase/app'
+import { auth, user } from 'src/firebase/app'
 import { NotifyOk, NotifyError } from 'src/quasar-helpers/notify'
 
 function doSignOut() {
