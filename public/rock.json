@@ -57,7 +57,7 @@
     {
       "name": "Гражданская оборона",
       "src": "https://stream03.pcradio.biz/Grazhdanskaja_oborona-hi",
-      "desc": "https://meta.pcradio.ru/Grazhdanskaja_oborona_current.json",
+      "desc": "",
       "img": "https://pcradio.ru/images/stations/61b09d32cce15.jpg"
     }
   ],
@@ -397,13 +397,13 @@
           "name": "HOT 100",
           "src": "https://hdradiohot100-rfritschka.radioca.st/stream",
           "desc": "",
-          "icon": "https://progoproductions.com/hd-radio/wp-content/uploads/sites/3/2024/05/HD-Radio-Hot-100.png"
+          "img": "https://progoproductions.com/hd-radio/wp-content/uploads/sites/3/2024/05/HD-Radio-Hot-100.png"
         },
         {
           "name": "Jazz",
-          "src": "https://hdradiojazz-rfritschka.radioca.st",
+          "src": "https://hdradiojazz-rfritschka.radioca.st/stream",
           "desc": "",
-          "icon": "https://progoproductions.com/hd-radio/wp-content/uploads/sites/3/2024/05/JAZZ-COVER.png"
+          "img": "https://progoproductions.com/hd-radio/wp-content/uploads/sites/3/2024/05/JAZZ-COVER.png"
         }
       ],
       "icon": "https://hd-radio.net/wp-content/uploads/sites/3/2024/05/HD-Radio-Network-Small.png"
