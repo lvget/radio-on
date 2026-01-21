@@ -2,7 +2,8 @@
   <div class="row items-center">
     <div class="q-ma-xs">
       <q-btn flat round to="/stream">
-        <q-img :src="streamData.image || '/img/dynamic.png'" style="width: 70px; height: 70px; border-radius: 50%" />
+        <img :src="streamData.image || AudioLibrary.currentStream.img || '/img/dynamic.png'"
+          style="width: 70px; height: 70px; border-radius: 50%" />
       </q-btn>
 
     </div>
@@ -14,10 +15,10 @@
         </div>
         <div>
           <div class="text-caption text-weight-light">
-            {{ AudioLibrary.currentStream.name }}
+            &nbsp;{{ AudioLibrary.currentStream.name }}
           </div>
           <div class="text-caption ellipsis text-no-wrap">
-            {{ streamData.title }}
+            &nbsp;{{ streamData.title }}
           </div>
         </div>
       </div>

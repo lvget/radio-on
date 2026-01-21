@@ -5,7 +5,6 @@
       <div>version: {{ version.ver }}</div>
       <div>build: {{ version.time }}</div>
     </div>
-
   </q-page>
 </template>
 

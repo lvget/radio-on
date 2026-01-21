@@ -1,10 +1,10 @@
-//import { Playlist } from './AudioLibrary';
 import { reactive } from 'vue';
 import { player } from './Audio';
 import { LocalStorage, Dialog, exportFile, Notify } from 'quasar';
 import CollectionDialog from 'src/components/CollectionDialog.vue';
 import StationDialog from 'src/components/StationDialog.vue';
 import PlaylistDialog from 'src/components/PlaylistDialog.vue';
+import version from '../../version.json';
 
 export type AudioStream = {
   name: string;
@@ -232,7 +232,7 @@ const stor = reactive({
     LocalStorage.setItem('favorite', this.favorite);
   },
   loadPlaylist(url: string) {
-    fetch(url).then((res) => {
+    fetch(`${url}?v=${version.ver}`).then((res) => {
       if (res.ok) {
         res.json().then((playlist: Playlist) => {
           this.playlists.push(playlist);

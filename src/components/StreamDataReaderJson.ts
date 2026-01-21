@@ -19,7 +19,6 @@ export class StreamDataReaderJson {
   constructor(url: string, onStat: (stat: any) => void) {
     this.url = url;
     this.onStat = onStat;
-    if (url) this.start(url);
   }
 
   start(url?: string) {
@@ -29,7 +28,7 @@ export class StreamDataReaderJson {
     this._timer = window.setInterval(() => {
       this.read();
     }, 30000);
-
+    debugger;
     this.read();
   }
 
@@ -39,13 +38,11 @@ export class StreamDataReaderJson {
   }
 
   read() {
+    console.log('read stat');
     fetch(this.url).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          //console.log(data);
-
           if (data.errorCode == 0) {
-            console.log(data.result);
             let d = data.result.short;
             let stat = {
               title: d.title,
@@ -67,8 +64,6 @@ let callback: (stat: TrackStat) => void = () => {};
 let statsListener: any = null;
 
 function _onStats(data: any) {
-  console.log(data);
-
   let stat: TrackStat = {
     title: '',
     image: null,

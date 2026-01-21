@@ -11,7 +11,7 @@ import equalizer from './Equalizer';
 //     document.addEventListener('DOMContentLoaded', callback);
 //   }
 // }
-
+let init = false;
 let audio = new Audio();
 audio.crossOrigin = 'anonymous';
 
@@ -20,13 +20,16 @@ let analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;
 
 function initAudio() {
-  let audioSource = audioContext.createMediaElementSource(audio);
+  if (init) return;
+  init = true;
+  setTimeout(() => {
+    let audioSource = audioContext.createMediaElementSource(audio);
 
-  equalizer.init(audioContext);
-  equalizer.input(audioSource).connect(audioContext.destination);
-
-  //equalizer.input(audioSource).connect(analyser);
-  //analyser.connect(audioContext.destination);
+    equalizer.init(audioContext);
+    equalizer.input(audioSource).connect(audioContext.destination);
+    //equalizer.input(audioSource).connect(analyser);
+    //analyser.connect(audioContext.destination);
+  }, 2000);
 }
 
 const player = reactive<IPlayer>({

@@ -3,14 +3,14 @@
     <div style="width: 90%; max-width: 800px; margin: 0 auto;">
       <q-card class="bg1">
         <q-card-section>
-          <div class=text-h4>Radio On</div>
+          <div class=text-h4>RADIO-MY</div>
           <div class=text-subtitle2>https://radio-on.web.app </div>
           <div class=caption>Сборник интернет-радио станций </div>
         </q-card-section>
 
         <q-separator inset color="primary" />
 
-        <q-card-section>
+        <q-card-section>-
           <div>version: {{ version.ver }}</div>
           <div>build: {{ version.time }}</div>
         </q-card-section>
